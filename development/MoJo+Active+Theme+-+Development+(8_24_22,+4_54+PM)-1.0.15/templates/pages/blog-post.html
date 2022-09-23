@@ -1,0 +1,31 @@
+---
+gql: "query getFooter {
+    site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+<div class="blog-container container">
+    <div class="page mb-4">
+        <div class="row">
+            <div class="col-12">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{> components/blog/post detail=true post=blog.post show_tags=true}}
+        </div>
+    </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}

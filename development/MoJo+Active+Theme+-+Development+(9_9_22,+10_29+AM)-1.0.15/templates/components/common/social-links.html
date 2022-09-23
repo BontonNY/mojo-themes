@@ -1,0 +1,11 @@
+{{#if social_media}}
+<div class="socialLinks socialLinks--alt">
+    {{#each social_media}}
+    <div class="socialLinks-item">
+        <a class="icon icon--{{display_name}}" href="{{url}}" target="_blank">
+            <i class="fab fa-{{display_name}}"></i>
+        </a>
+    </div>
+    {{/each}}
+</div>
+{{/if}}

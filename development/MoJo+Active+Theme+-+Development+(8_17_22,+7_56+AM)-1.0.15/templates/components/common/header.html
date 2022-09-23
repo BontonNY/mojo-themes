@@ -1,0 +1,121 @@
+<div id="sitewide-banner-top" class="top-banner"></div>
+
+<!-- This section is for Home Page or Cat Page ONLY Banners -->
+{{#if banners.top}}
+<div id="homepage-banner-top" class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+			{{{this.content}}}
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+<!-- This section is for Home Page or Cat Page ONLY Banners -->
+
+<header class="header" role="banner">
+
+    <div class="navbar navbar-expand-xl d-block" role="navigation">
+
+        <div class=" collapse navbar-collapse d-xl-none " id="primaryNavBar">
+            <div class="mobile-primary-nav  px-3 d-xl-none">
+                <div class="top-bar-menu d-flex justify-content-between align-items-center">
+                    <a href="/" class="navbar-brand p-0">
+                        {{> components/common/store-logo}}
+                        <span class="sr-only">HOME</span>
+                    </a>
+                    
+                    <button class="navbar-toggler navbar-button " type="button" data-toggle="collapse" data-target="#primaryNavBar" aria-controls="primaryNavBar" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fal fa-times fa-x-2"></i>
+                    </button>
+
+                </div>
+
+                <div id="mobile-nav">
+                   <div></div>
+                </div>
+                
+ 
+
+            </div>
+        </div>
+        
+        <div class="container px-3 px-xl-0">
+            <a class="navbar-brand d-xl-none" href="/"> {{> components/common/store-logo}} <span class="sr-only">HOME</span> </a>
+
+            <div class="d-flex inner-nav">
+                
+                {{#if customer}}
+                    <a class="nav-link  d-xl-none " href="{{urls.account.index}}" title="{{lang 'common.account'}}"><i class="far fa-user"></i></a>
+                    {{> components/common/account-menu}}
+                {{else}}
+                    <a class="nav-link  d-xl-none " href="{{urls.auth.login}}" title="{{lang 'common.account'}}"><i class="far fa-user"></i></a>
+                {{/if}}
+
+                <!--  <a class="navbar-button--addon    d-xl-none text-dark" href="{{urls.account.index}}">
+                    <i class="far fa-user"></i>
+                </a> -->
+                <a class="navbar-button--addon d-xl-none text-dark" href="{{urls.account.wishlists.all}}">
+                    <i class="far fa-heart"></i> 
+                </a>
+                <a class="navbar-button--addon d-xl-none text-dark cart-link" href="{{urls.cart}}">
+                    <i class="far fa-shopping-bag"></i>
+                    <div class="cart-count">
+                        <svg width="14" height="14" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 12.2109V4.06818L7.00316 0L0 4.06818V12.2109L7.00316 16.2791L14 12.2109Z" fill="#D83934"/>
+                        </svg>
+                        <span class="cart-quantity"></span>
+                    </div>
+                </a>
+                <button class="navbar-toggler navbar-button" type="button" data-toggle="collapse" data-target="#primaryNavBar" aria-controls="primaryNavBar" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <span class="navbar-toggler-icon"></span>  -->
+                    <i class="far fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="container px-3 px-xl-0">
+            <div class="search-bar my-2 mx-auto w-100">
+                <div id="ss-search-bar-mobile">
+                    <div>
+                        {{> components/common/search-box}}
+                    </div>
+                </div>            
+            </div>
+        </div>
+
+        <div class="justify-content-center d-none d-xl-block">
+            <div class="container d-flex align-items-center justify-content-center  justify-content-xl-between">
+                <div id="topNavDesktop" class="d-none d-xl-flex align-items-center w-100 justify-content-xl-between">
+                    <a href="/" class="navbar-brand p-0">
+                        {{> components/common/store-logo}}
+                        <span class="sr-only">HOME</span>
+                    </a>
+                    <!-- <div class="header-promo-link mx-2">
+                        <div class="d-none flex-nowrap d-xl-flex justify-content-between ">
+                            <a class="mx-1" href="#">Trending</a>
+                            <a class="mx-1" href="#">Sale</a>
+                            <a class="mx-1" href="#">Gift</a>
+                        </div>
+                    </div>-->
+                    <div class="navbar-navigation d-none d-xl-block  ">
+                        {{> components/common/navigation}}
+                    </div>
+                </div>
+                <div class="relative nav-wrapper">
+                    <div class="nav-inner" id="global-nav">
+                        {{> components/common/navigation-menu}}
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{#unless theme_settings.hide_category_blocks }}
+        {{> components/common/category-blocks}}
+    {{/unless}}
+
+</header>
+
+{{{region name="header_bottom"}}}
+

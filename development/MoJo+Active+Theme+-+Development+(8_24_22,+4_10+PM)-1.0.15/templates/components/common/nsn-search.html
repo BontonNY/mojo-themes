@@ -1,0 +1,48 @@
+<div class="modal fade" id="nsn-search" tabindex="-1" role="dialog" aria-labelledby="nsn-search-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border border-primary rounded">
+            <form action="" method="post" id="quick-order">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary font-weight-bold" id="nsn-search-title">Quick Order</h5>
+                    <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col">
+                            <p>Search multiple NSNs, specifiy your quantity and add them directly to your cart.</p>
+                        </div>
+                    </div>
+                    <div class="row text-primary text-uppercase font-weight-bold">
+                        <div class="col-6">
+                            <p class="bg-light p-2">NSN</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="bg-light p-2">Quantity</p>
+                        </div>
+                    </div>
+                    <div class="row repeating-form mb-2">
+                        <div class="col-6">
+                            <label class="sr-only" for="NSN[0]"> National Stock Number </label>
+                            <input class="form-input NSN" id="NSN_0_ID" name="NSN[0]" type="text" placeholder="">
+                        </div>
+                        <div class="col-6">
+                            <label class="sr-only" for="NSN-Quantity[0]"> Quantity </label>
+                            <input class="form-input Quantity" id="NSN_0_Quantity" name="NSN[0]" type="text" placeholder="">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-alt" id="MoreInputs">ADD MORE
+                        ITEMS</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary btn-alt" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-alt">Add To Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

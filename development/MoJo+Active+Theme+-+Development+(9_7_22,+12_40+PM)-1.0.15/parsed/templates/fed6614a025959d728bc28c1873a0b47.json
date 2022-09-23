@@ -1,0 +1,3 @@
+{
+  "components/search/heading": "<h1 class=\"text-center font-weight-bold\">\r\n    <span class=\"text-primary\">You Searched:</span> <span class=\"text-dark\">{{forms.search.query}}</span>\r\n</h1>\r\n"
+}

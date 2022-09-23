@@ -1,0 +1,66 @@
+<nav class="nav-secondary" aria-label="Secondary Menu Tools">
+    {{> components/common/currency-selector}}
+
+    <ul class="nav align-items-center floating-menu-nav justify-content-center justify-content-xxl-end flex-nowrap">
+        {{#comment}}
+        <!-- {{#if settings.gift_certificates_enabled}}
+        <li class="nav-item">
+            <a class="nav-link" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+        </li>
+        {{/if}} -->
+        {{/comment}}
+        <li class="nav-item position-relative nav-item-form nav-search">
+           <div id="ss-search-bar-desktop">
+                <div>
+                    {{> components/common/search-box}}
+                </div>
+           </div>
+            <!-- <a class="nav-link nav-link--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false"><i class="fas fa-search mr-2 text-muted"></i>{{lang 'common.search'}}</a> -->
+        </li>
+        {{#if customer.store_credit.value '>' 0}}
+        <li class="nav-item">
+            <a class="nav-link nav-link--storeCredit" data-dropdown="storeCredit-dropdown" data-options="align:bottom" href="{{urls.cart}}">
+                <span class="nav-link-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+            </a>
+            <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+            </div>
+        </li>
+        {{/if}}
+        {{#if theme_settings.social_icon_placement_top}}
+        <li class="nav-item nav-item--social">
+            {{> components/common/social-links}}
+        </li>
+        <li class="nav-item nav-item--divider">|</li>
+        {{/if}}
+        <li id="account-hover" class="nav-item position-relative">
+            {{#if customer}}
+                <a class="nav-link" href="{{urls.account.index}}" title="{{lang 'common.account'}}"><i class="far fa-user"></i></a>
+            		{{> components/common/account-menu}}
+            {{else}}        
+                <a class="nav-link" href="{{urls.auth.login}}" title="{{lang 'common.account'}}"><i class="far fa-user"></i></a>
+            {{/if}}
+        </li>
+        <li  class="nav-item position-relative">
+            <a class="navbar-button--addon " href="{{urls.account.wishlists.all}}">
+                <i class="far fa-heart"></i>
+            </a>
+        </li>
+        <li class="nav-item nav-item--cart">
+            
+            <a class="nav-link" href="{{urls.cart}}" title="{{lang 'common.cart'}}"  {{#unless theme_settings.hide_minicart}} data-cart-preview data-dropdown="cart-preview-dropdown" data-options="align:right"{{/unless}}>
+                <span class="nav-item-cartLabel">
+                    <i class="far fa-shopping-bag text-secondary"></i>                    
+                </span>
+                <div class="cart-count">
+                    <span class="cart-quantity"></span>
+                </div>                
+                
+            </a>
+            {{#unless theme_settings.hide_minicart }}        
+                <div class="dropdown-menu shadow fadeInRight animated" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+            {{/unless}}
+        </li>
+    </ul>
+</nav>
+

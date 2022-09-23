@@ -1,0 +1,8 @@
+<div class="body {{page.title}}" data-currency-code="{{currency_selector.active_currency_code}}"></div>
+<main id="main" role="main" class="main">
+{{#block "hero"}} {{/block}}
+    {{#block "page"}} {{/block}}
+    {{> components/common/modal}}
+    {{> components/common/alert-modal}}
+    {{> components/common/nsn-search}}
+</main>

@@ -1,0 +1,78 @@
+---
+brands:
+    limit: 10000
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 5, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+
+{{#partial "page"}}
+<div class="brand- -container">
+    <div class="page container">
+        <div class="row">
+            <h1 class="  mx-auto">{{lang 'brand.label'}}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="page container">
+    <div class="col">{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}</div>
+
+    <h2 class="text-primary my-4 text-center">All Brands</h2>
+    <ul class="brandGrid">
+        {{#each brands}}
+        <li class="brand mb-4 text-center">
+            <a href="{{url}}">
+                <div class="card-img-container d-flex border border-secondary p-1 mx-auto">
+                    {{> components/common/responsive-img
+                            image=image
+                            class="card-image m-auto"
+                            fallback_size=../theme_settings.brand_size
+                            lazyload=../theme_settings.lazyload_mode
+                            default_image=../theme_settings.default_image_brand
+                        }}
+                </div>
+                <p class="d-block ml-2 h5 my-auto"> {{name}} </p>
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+    <div class="row">
+        <div class="page-content col ml-0 ml-md-5" id="product-listing-container">
+            {{> components/common/paginator pagination.brands}}
+        </div>
+    </div>
+</div>
+{{{region name="brands_below_content"}}}
+{{/partial}}
+{{> layout/base-full}}

@@ -1,0 +1,34 @@
+<div class="facetedSearch-refineFilters sidebarBlock">
+    <h6 class="sidebarBlock-heading font-weight-bold d-none">
+        {{lang 'search.faceted.selected.title'}}
+    </h6>
+
+    {{#if items}}
+        <ul class="inlineList inlineList--labels">
+            {{#each items}}
+                <li>
+                    <a href="{{url}}"
+                       class="facetLabel"
+                       rel="nofollow"
+                       data-faceted-search-facet
+                    >
+                        {{#if facet '===' 'rating'}}
+                            {{lang 'search.faceted.selected.rating-label' rating=title}}
+                        {{else}}
+                            {{{sanitize title}}}
+                        {{/if}}
+
+                       <i class="fal fa-times"></i>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+    {{/if}}
+
+    {{#if remove_all_url}}
+        <a href="{{remove_all_url}}" data-faceted-search-facet class="btn-clearFilters">
+            {{lang 'search.faceted.selected.clear-all'}}
+        </a>
+    {{/if}}
+</div>

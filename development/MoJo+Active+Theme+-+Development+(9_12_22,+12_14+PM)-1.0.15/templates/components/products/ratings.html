@@ -1,0 +1,11 @@
+{{#for 1 5}}
+    {{#if ../this.rating '>=' $index}}    
+    <span class="icon icon--ratingFull" tabindex="-1" focusable="false">
+        <i class="fa fa-star"></i>
+    </span>
+    {{else}}
+    <span class="icon icon--ratingEmpty" tabindex="-1" focusable="false">
+        <i class="fal fa-star"></i>
+    </span>
+    {{/if}}
+{{/for}}

@@ -1,0 +1,50 @@
+<!-- <form action="{{product.add_to_wishlist_url}}" class="form form-wishlist form-action position-relative" data-wishlist-add method="post">
+    <button class="btn btn-outline-primary w-60 h-60 br-100" type="submit" value="{{lang 'account.wishlists.add_to_default'}}">
+        <span class="d-none">{{lang 'account.wishlists.wishlist'}}</span><i aria-hidden="true" class=" fal fa-heart"></i>
+    </button>
+</form> -->
+
+
+<form action="{{product.add_to_wishlist_url}}" class="form form-wishlist form-action" data-wishlist-add method="post">
+
+    
+
+    <a aria-controls="wishlist-dropdown"
+       aria-expanded="false"
+       class="button dropdown-menu-button btn btn-outline-primary w-60 h-60 br-100"
+       data-dropdown="wishlist-dropdown"
+       href="#"
+    >
+        
+        <span class="d-none">{{lang 'account.wishlists.add_item'}}</span>
+        <i aria-hidden="true" class=" fal fa-heart"></i>
+        
+    </a>
+    <ul aria-hidden="true" class="dropdown-menu" data-dropdown-content id="wishlist-dropdown">
+        <li  class="label">
+            <label>Add To Wish List: </label>
+        </li>
+
+        {{#if customer.wishlists}}
+            {{#each customer.wishlists}}
+                <li>
+                    <input class="button no-btn {{#if this.num_items '!==' '0'}}button--has-items{{/if}}"
+                           formaction="{{this.add_url}}&product_id={{../product.id}}"
+                           type="submit"
+                           value="{{this.name}}"
+                    >
+                </li>
+            {{/each}}
+        {{else}}
+        <li>
+            <input class="no-btn" type="submit" value="{{lang 'account.wishlists.add_to_default'}}">
+        </li>
+        {{/if}}
+        <li class="create-new">
+            <a data-wishlist class="button" href="/wishlist.php?action=addwishlist&product_id={{product.id}}">
+                <i class="fal fa-plus-circle"></i>
+                {{lang 'account.wishlists.create_new'}}
+            </a>
+        </li>
+    </ul>
+</form>

@@ -1,0 +1,66 @@
+---
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 200
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 5, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+<div class="blog-container container">
+    <div class="page mb-4">
+        <div class="row">
+            <div class="col-12">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{#unless theme_settings.hide_blog_page_heading }}
+                <h1 class=" ">{{ blog.name }}</h1>
+            {{/unless}}
+        </div>
+    
+        {{#each blog.posts}}
+            {{> components/blog/post post=this}}
+        {{/each}}
+    
+        {{> components/common/paginator pagination.blog}}
+    </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}

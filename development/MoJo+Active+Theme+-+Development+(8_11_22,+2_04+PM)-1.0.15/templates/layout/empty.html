@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    {{page_type}}
+    
+    {{#or  (if page_type '==' 'invoice_print' ) (if page_type '==' 'search' ) }}
+        {{head.title}}
+    {{else}}
+        {{head.title}}
+        {{#comment}}
+        <!-- WAS GIVING SERVER ERROR. TEMP FIX.
+        {{#if (last (split head.title "-")) '==' 'Ton'}}
+            {{join (split (chop (first (split head.title settings.store_name))) "-") '|'}} | {{settings.store_name}}
+        {{else if (first (split head.title "-")) '==' 'Bon'}}
+            {{settings.store_name}} | {{join (split (chop (last (split head.title settings.store_name))) "-") '|'}}  
+        {{else if (occurrences (last (split head.title "-")) 'Not Found') '==' '1'}}
+            {{settings.store_name}} | Not Found
+        {{else}}
+            {{#if (occurrences head.title "-") '==' '0'}}
+                {{chop head.title}}                
+            {{else}}
+                {{first (split head.title "-")}} | {{last (split head.title "-")}}
+            {{/if}}
+        {{/if}}
+        -->
+        {{/comment}}
+    {{/or}}        
+
+    </title>
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    <script async src="{{cdn 'assets/dist/theme-bundle.apps.js'}}"></script>
+    {{!-- Inject Storefront API Token into JS context so we can use it in our JavaScript --}}
+    {{~inject 'storefrontAPIToken' settings.storefront_api.token}}
+    {{#block "head"}}{{/block}}
+</head>
+<body>
+    {{#block "page"}}{{/block}}
+</body>
+</html>

@@ -1,0 +1,7 @@
+<ul class="list-style-none m-0">
+    {{#each products}}
+    <li class="product card {{#if @last}}mb-5{{else}}mb-2{{/if}}">
+		{{>components/products/list-item show_compare=../show_compare show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event settings=../settings position=(add @index 1)}}
+    </li>
+    {{/each}}
+</ul>

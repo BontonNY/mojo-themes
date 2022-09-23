@@ -1,0 +1,18 @@
+{{#if content_results.length '>' 0}}
+<div class="search-panel--webpages">
+    <div class="searchList">
+        {{#each content_results}}
+        <div class="searchList-item" data-url="{{url}}">
+            <a href="{{url}}">
+                <figure></figure>
+                <div>
+                    <div class="search-title">{{title}}</div>
+                    <div class="search-sku">{{sku}}</div>
+                    <div class="search-desc">{{{content}}}</div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}

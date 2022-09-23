@@ -1,0 +1,12 @@
+{{#if category_results.length '>' 0 }}
+<div class="searchList searchList--products">
+    {{#each category_results}}
+    <div class="searchList-item">
+        {{#each this}}
+            <a href="{{url}}">{{name}}</a>
+        {{#unless @last}} > {{/unless}}
+        {{/each}}
+    </div>
+    {{/each}}
+</div>
+{{/if}}

@@ -1,0 +1,28 @@
+{{!--
+<form class="form" action="{{urls.search}}">
+    <fieldset class="d-flex px-0 px-xl-0">
+        <legend class="sr-only">Site Search</legend>
+        <div class="d-flex w-100 search-box-wrapper">
+            <label class="sr-only" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+            <input class="form-control px-4 pr-6 small" data-search-quick name="search_query" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+            <button class="d-none btnIconSearch"><i class="fa fa-search"></i></button>
+            <button class="search-btn ml-2 px-3 px-lg-2" type="submit"><i class="far fa-search d-inline mr-lg-2"></i></button>
+        </div>
+    </fieldset>
+    <div class="dropdown dropdown--quickSearch quickSearchResults" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+        {{> components/common/quick-search}}
+    </div>
+</form>
+--}}
+
+<form class="form" method="get" action="/shop/">
+    <fieldset class="d-flex px-0 px-xl-0">
+        <legend class="sr-only">Site Search</legend>
+        <div class="d-flex w-100 search-box-wrapper">
+            <label class="sr-only" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+            <input class="searchspring-ac form-control px-4 pr-6 small" name="search_query" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+            <button class="d-none btnIconSearch"><i class="fa fa-search"></i></button>
+            <button class="search-btn ml-2 px-3 px-lg-2" type="submit"><i class="far fa-search d-inline mr-lg-2"></i></button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,121 @@
+<section class="productReviews" id="product-reviews" data-product-reviews aria-labelledby="rating-block">
+    <h2 class="h2 font-weight-normal text-center pt-2 mb-2">Reviews</h2>
+    <div class="row mb-2 pb-0 text-center justify-content-center">
+        <div id="rating-block" class="col-md-4 col-xl-2" tabindex="0">
+            <p id="averageRating" class="font-weight-normal mb-0" style="font-size: 48px; height: 60px;">{{product.rating}}<span class="sr-only">Stars</span></p>
+            <p id="ratingStars" class="m-0" tabindex="-1">{{> components/products/ratings rating=product.rating}}</p>
+            <p id="NumberInRating">
+                Based on <span>{{reviews.total}}</span> Reviews
+            </p>
+        </div>
+        <div class="col-md-4 col-xl-2">
+            <img class="lazyload m-auto" data-sizes="auto" src="{{cdn 'img/loading.svg'}}">
+            <div id="Review-Graph" class="d-none px-4 px-md-0">
+                <span class="d-flex mb-0 align-items-center">
+                    <div class="">{{> components/products/ratings rating=5}}</div>
+                    <div class="d-flex flex-grow-1 mx-2 pt-2">
+                        <span class="line front bg-primary"></span>
+                        <span class="line back bg-light" style="width:100%"></span>
+                    </div>
+                    <div><span class="graph count">()</span></div>
+                </span>
+                <span class="d-flex mb-0 align-items-center">
+                    <div class="">{{> components/products/ratings rating=4}}</div>
+                    <div class="d-flex flex-grow-1 mx-2 pt-2">
+                        <span class="line front bg-primary"></span>
+                        <span class="line back bg-light" style="width:100%"></span>
+                    </div>
+                    <div><span class="graph count">()</span></div>
+                </span>
+                <span class="d-flex mb-0 align-items-center">
+                    <div class="">{{> components/products/ratings rating=3}}</div>
+                    <div class="d-flex flex-grow-1 mx-2 pt-2">
+                        <span class="line front bg-primary"></span>
+                        <span class="line back bg-light" style="width:100%"></span>
+                    </div>
+                    <div><span class="graph count">()</span></div>
+                </span>
+                <span class="d-flex mb-0 align-items-center">
+                    <div class="">{{> components/products/ratings rating=2}}</div>
+                    <div class="d-flex flex-grow-1 mx-2 pt-2">
+                        <span class="line front bg-primary"></span>
+                        <span class="line back bg-light" style="width:100%"></span>
+                    </div>
+                    <div><span class="graph count">()</span></div>
+                </span>
+                <span class="d-flex mb-0 align-items-center">
+                    <div class="">{{> components/products/ratings rating=1}}</div>
+                    <div class="d-flex flex-grow-1 mx-2 pt-2">
+                        <span class="line front bg-primary"></span>
+                        <span class="line back bg-light" style="width:100%"></span>
+                    </div>
+                    <div><span class="graph count">()</span></div>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4 col-xl-2 d-flex mt-2 mt-md-0">
+            <a class="btn btn-lg btn-outline-primary write-review m-auto font-weight-bold" href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}" {{#unless is_ajax }}data-toggle="modal" data-target="#modal-review-form" {{/unless}} style="height: 52px;">
+                <span>{{lang 'products.reviews.new'}}</span> 
+            </a>
+        </div>
+    </div>
+    {{#comment}}
+    <!-- <h4 class="toggle-title">
+        {{lang 'products.reviews.header' total=reviews.total}}
+        {{#if theme_settings.show_product_reviews_tabs '!==' true}}
+            <a class="toggleLink is-open" data-collapsible href="#productReviews-content">
+                <span class="toggleLink-text toggleLink-text--on">
+                    {{lang 'products.reviews.hide'}}
+                </span>
+                <span class="toggleLink-text toggleLink-text--off >
+                    {{lang 'products.reviews.show'}}
+                </span>
+            </a>
+        {{/if}}
+    </h4> -->
+    {{/comment}}
+    <div class="toggle-content is-open border-top" id="productReviews-content" aria-hidden="false">
+        {{#each reviews.list}}
+            <article class="review-article" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                <div class="row mx-5 mt-4">
+                    <div class="col-lg-2">
+                        <span class="productReview-rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            {{> components/products/ratings rating=rating}}
+                            <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                            <meta itemprop="ratingValue" content="{{rating}}">
+                                <meta itemprop="bestValue" content="5">
+                        </span>
+
+                        {{#if name}}
+                        <p class="h4 font-weight-bold mt-2 mb-4">{{name}}</p>
+                        <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                            <meta itemprop="name" content="{{name}}">
+                        </div>
+                        {{else}}
+                        <p class="productReview-author">
+                            {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                <meta itemprop="name" content="{{lang 'products.reviews.anonymous_poster'}}">
+                            </div>
+                        </p>
+                        {{/if}}
+                        <p class="font-weight-bold">
+                            {{date}}
+                        </p>
+                    </div>
+                    <div class="col-lg-10">
+                        <h2 class="h4" itemprop="name" class="productReview-title">{{{ title }}}</h2>
+                        <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
+                    </div>
+                </div>
+            </article>
+        {{/each}}
+        <div class="col text-center review-pagination">
+            {{> components/common/paginator pagination.reviews}}
+            <button id="review-expansion" class="btn btn-lg btn-outline-primary my-3 font-weight-bold d-none">
+                <span class="mr-2">MORE REVIEWS</span> 
+                <i class="fa fa-plus-circle"></i>
+            </button>
+        </div>
+    </div>
+</section>

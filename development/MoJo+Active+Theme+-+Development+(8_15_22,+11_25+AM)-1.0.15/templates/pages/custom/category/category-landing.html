@@ -1,0 +1,142 @@
+---
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 5, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+{{inject "currentWishlistId" gql.data.customerWishlist.wishlists.edges.0.node.entityId}}
+<script>
+    let jsContext = JSON.parse({{jsContext}});
+    const $currentWishlistId = jsContext.currentWishlistId;
+</script>
+
+
+<div class="page-container container-fluid">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            </div>
+        </div>    
+        
+        <div class=" mb-4 border-bottom">
+            {{#unless theme_settings.hide_category_page_heading }}
+                <h1 class="mt-2 mb-4  ">{{category.name}}</h1>
+            {{/unless}}
+        </div>
+
+        <div class="row shop-our-top-category sub_category_list mt-6">
+            <div class="col-md-12 no-pad-md">
+                {{{region name="sub_category_list_header"}}}    
+            </div>
+        </div>
+
+        <div class="row her-banner-row">
+            <div class="col-md-12 hero-banner home-top-carousel">
+                {{{region name="hero-banner"}}}
+            </div>
+        </div>
+
+        <div class="row brand-row">
+            <div class="col-md-12 no-pad-md brand_list">
+                {{{region name="brand_list"}}}
+            </div>
+        </div>
+
+        <div class="row get_inspired ">
+            <div class="col-md-12 col-lg-4  col-xl-5 py-4 py-lg-0 no-pad-md ">
+                <div class="top-content">
+                    {{{region name="get_inspired_top_text_content"}}}
+                </div>
+                {{{region name="get_inspired_left"}}}
+            </div>
+            <div class="col-md-12 col-lg-8 col-xl-7 no-pad-md">
+                {{{region name="get_inspired_right"}}}        
+            </div>    
+        </div>
+        
+        <div class="better-brands">
+            <div class="row  tab-header">
+                <div class="col-md-12 better-brands-header">
+                    {{{region name="better-brands-header"}}}    
+                </div>
+            </div>
+            
+            <div class="row tab-content active" id="women">
+                
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            {{{region name="better-brands-column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-column_3"}}}    
+                </div>
+            </div> 
+
+        </div>
+
+        {{#if customer}}
+            <div class="row">
+                <section class="carousel-section recently-viewed">
+                    <h2 class="h2">Recently Viewed Products</h2>
+                    <div id="recently-viewed-section" class="productCarouselRecentlyViewed owl-carousel" data-list-name="Recently Viewed Products">
+                        
+                    </div>
+                </section>
+            </div>
+        {{/if}}
+        
+        <div class="row last_section d-md-px-0 ">
+            <div class="page col-12 no-pad-md">
+                {{{region name="page_builder_content"}}}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

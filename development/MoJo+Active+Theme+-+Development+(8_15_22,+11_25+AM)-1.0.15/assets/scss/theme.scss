@@ -1,0 +1,43 @@
+// =============================================================================
+// MOJO ACTIVE
+// Global styles used between all frameworks
+// =============================================================================
+@import './mojo/theme.scss';
+@import './mojo/mixins';
+@import './mojo/_variables.scss';
+
+
+@import "tools/tools.scss";
+@import "../../node_modules/@bigcommerce/citadel/dist/vendor/foundation/foundation/components/grid.scss";
+
+$fontSize-base: $font-size-base;
+$lineHeight-base: $line-height-base;
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/global/layout/layout.scss";
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/global/color/color.scss";
+
+
+// =============================================================================
+// FontAwesome
+// =============================================================================
+$fa-font-path: "../fonts";
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/fontawesome.scss';
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/brands.scss';
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/light.scss';
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/regular.scss';
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/solid.scss';
+.fa-1-5x { font-size:1.5em; }
+
+
+// =============================================================================
+// Utilities
+// =============================================================================
+@import "../../node_modules/owl.carousel/src/scss/owl.carousel.scss";
+@import "../../node_modules/owl.carousel/src/scss/owl.theme.default.scss";
+
+
+// =============================================================================
+// Custom, Extending Bootstrap, MoJo Active Styles
+// =============================================================================
+@import './mojo/_custom.scss';
+@import './mojo/_accessibility.scss';
+@import './vendor/mja/swatches.scss';
