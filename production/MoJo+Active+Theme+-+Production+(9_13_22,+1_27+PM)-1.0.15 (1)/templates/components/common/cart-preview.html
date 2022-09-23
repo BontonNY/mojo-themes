@@ -1,0 +1,132 @@
+<div class="previewCart">
+    <div class="header-cart">
+        <h2>Your Bag</h2>
+        <a href="javascript:void(0)" class="close-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M8.03906 6.5L12.0625 2.51562L12.8828 1.69531C13 1.57812 13 1.38281 12.8828 1.22656L12.0234 0.367188C11.8672 0.25 11.6719 0.25 11.5547 0.367188L6.75 5.21094L1.90625 0.367188C1.78906 0.25 1.59375 0.25 1.4375 0.367188L0.578125 1.22656C0.460938 1.38281 0.460938 1.57812 0.578125 1.69531L5.42188 6.5L0.578125 11.3438C0.460938 11.4609 0.460938 11.6562 0.578125 11.8125L1.4375 12.6719C1.59375 12.7891 1.78906 12.7891 1.90625 12.6719L6.75 7.82812L10.7344 11.8516L11.5547 12.6719C11.6719 12.7891 11.8672 12.7891 12.0234 12.6719L12.8828 11.8125C13 11.6562 13 11.4609 12.8828 11.3438L8.03906 6.5Z" fill="#333333"/>
+            </svg>
+        </a>
+    </div>
+    {{#if cart.items.length}}
+    <ul class="previewCartList">
+        {{#each (limit cart.items 4)}}
+        <li class="previewCartItem">
+            <div class="d-flex">
+                <div class="previewCartItem-image">
+                    <a href="{{url}}" alt="{{name}}" title="{{name}}">
+                        {{#if type '==' 'GiftCertificate'}}
+                        <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
+                        {{else}}
+                        {{> components/common/responsive-img
+                        image=image
+                        fallback_size=../../theme_settings.productthumb_size
+                        lazyload=../../theme_settings.lazyload_mode
+                        default_image=../../theme_settings.default_image_product
+                        }}
+                        {{/if}}
+                    </a>
+                    <div class="flex-item w-100">
+                        <a class="cart-remove icon cart-change"  href="#" data-item-edit="{{id}}">Change</a>
+                        <a class="cart-remove icon"  href="{{remove_url}}">
+                            <span>remove</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="previewCartItem-content d-flex justify-content-between align-items-start w-100 flex-wrap">
+                    <div class="flex-item">
+                        {{#unless (occurrences (toLowerCase theme_settings.pdp-brand-list) (toLowerCase brand.name))}}
+                            <span class="previewCartItem-brand">
+                                {{brand.name}}
+                            </span>
+                        {{/unless}}
+                        
+
+                        <a href="{{url}}" alt="{{name}}" title="{{name}}">
+                            <h6 class="previewCartItem-name">
+                                {{name}}
+                            </h6>
+                        </a>
+                        {{#each options}}
+                            <p><span class="mt-1 text-capitalize">{{name}}:</span>&nbsp;{{value}}</p>
+                        {{/each}}
+                    </div>
+                    <div class="flex-item w-100">
+                        <div class="form-increment d-flex align-items-center">
+                            {{#if can_modify}}
+                            <button class="btn" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
+                                <span class="sr-only">{{lang 'products.quantity_decrease'}}</span>
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </button>
+                            {{/if}}
+                            <input class="form-input form-input--incrementTotal cart-item-qty-input  text-center" id="qty-{{id}}" name="qty-{{id}}" type="tel" value="{{quantity}}" data-quantity-min="{{min_purchase_quantity}}" data-quantity-max="{{max_purchase_quantity}}" data-quantity-min-error="{{lang 'products.quantity_min' quantity=min_purchase_quantity}}" data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}" min="1" pattern="[0-9]*" data-cart-itemid="{{id}}" data-action="manualQtyChange" aria-live="polite" {{#unless can_modify}} disabled{{/unless}}>
+                            {{#if can_modify}}
+                            <button class="btn" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
+                                <span class="sr-only">{{lang 'products.quantity_increase'}}</span>
+                                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                            </button>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="flex-item">
+                        <span class="previewCartItem-price m-0">
+                            {{#if quantity '>' 1}}
+                                {{quantity}} &times;
+                            {{/if}}
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                <span{{#if price_discounted}} class="price--discounted" {{/if}}>
+                                    {{price.formatted}}
+                                </span>
+                                    {{#if price_discounted}}
+                                        {{price_discounted.formatted}}
+                                    {{/if}}
+                                {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}} 
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </li>
+        {{/each}}
+    </ul>
+    <div class="previewCartAction">
+        <div class="subtotal  w-100">
+            <span>{{lang 'cart.checkout.subtotal'}}: {{cart.sub_total.formatted}}</span>
+        </div>
+        <div class="previewCartAction-viewCart{{#unless cart.show_primary_checkout_button}} previewCartAction-viewCart--sole{{/unless}}" style="text-align: center;">
+            <a href="{{urls.cart}}"  class="btn btn-primary" style="width:225px">
+                {{lang 'cart.preview.view_cart'}}
+            </a>
+        </div> 
+        
+
+        {{#if cart.show_primary_checkout_button}}
+            <div class="previewCartAction-checkout">
+                <a href="/checkout" class="btn btn-primary">
+                    Checkout
+                </a>
+            </div>           
+        {{/if}}
+        <div class="continue_shopping w-100">
+            <a class="close-icon" href="javascript:void(0)">{{lang 'cart.preview.continue_shopping'}}</a>
+        </div>
+
+        {{#if cart.show_multiple_address_shipping}}
+        <div class="previewCartAction-checkoutMultiple" style="margin-bottom: 1rem; max-width: 304px;">
+            <a href="{{urls.checkout.multiple_address}}">
+                {{lang 'cart.preview.checkout_multiple'}}
+            </a>
+        </div>
+        {{/if}}
+    </div>
+    {{else}}
+    <div class="previewCart-emptyBody">
+        {{lang 'cart.checkout.empty_cart'}}
+    </div>
+    {{/if}}
+</div>
+

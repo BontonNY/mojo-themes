@@ -1,0 +1,191 @@
+<nav class="nav-primary" aria-label="Main Navigation Menu">
+	<ul class="nav level-0">
+
+		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Women">Women <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span></a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-1" id="navPages-1" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-1" id="navPages-1" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-1" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_1"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>
+
+		 <li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Men">Men <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span></a >
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-2" id="navPages-2" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-2" id="navPages-2" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-2" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_2"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>
+
+		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Kids"  >
+				Kids <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-3" id="navPages-3" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-3" id="navPages-3" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-3" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_3"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>		
+
+		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Shoes">
+				Shoes <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-4" id="navPages-4" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-4" id="navPages-4" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-4" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_4"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>	
+ 
+ 		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Home">
+				Home <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-5" id="navPages-5" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-5" id="navPages-5" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-5" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_5"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>
+
+		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Furniture">
+				Furniture & Rugs<span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-6" id="navPages-6" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-6" id="navPages-6" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-6" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_6"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>	
+
+
+		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Handbags">
+				Handbags <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-7" id="navPages-7" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-7" id="navPages-7" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-7" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_7"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>	
+
+		<li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0" href="javascript:void(0)" data-label="Jewelry & Watches">
+				Jewelry & Watches <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-8" id="navPages-8" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-8" id="navPages-8" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-8" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_8"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li>	
+
+		<!-- <li class="nav-item has-submenu">
+			<a class="nav-link has-submenu level-0 " href="javascript:void(0)" data-label="Beauty">
+				Beauty <span class="more"><i class="fal fa-angle-right" aria-hidden="true"></i></span>
+			</a>
+			{{~#contains page_type "account"~}}
+				<div class="nav-submenu get_navPages-9" id="navPages-9" aria-hidden="true" tabindex="-1"></div>
+			{{~else~}}
+				{{~#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag ~}}
+				<div class="nav-submenu get_navPages-9" id="navPages-9" aria-hidden="true" tabindex="-1"></div>
+				{{~else~}}
+					<div class="nav-submenu" id="navPages-9" aria-hidden="true" tabindex="-1">
+						{{#each gql.data.getMegaNav.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "mega_nav_9"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				{{/any}}
+			{{/contains}}
+		</li> -->
+
+	</ul>
+</nav>

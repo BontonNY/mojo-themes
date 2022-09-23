@@ -1,0 +1,88 @@
+/* Accessability CSS */
+#skiptocontent {
+	position: fixed;
+	margin-bottom: 0;
+}
+@media(max-width:799px) {
+	#skiptocontent {
+		display:none;
+	}
+}
+@media(min-width:800px) {
+	#skiptocontent {
+		margin-top: -70px;
+		width:100%;
+		color: #000;
+		background: #fff;
+		-webkit-transition: all .3s ease-out;
+		transition: all .3s ease-out;
+		z-index: 99999;
+		border-bottom:1px solid #000;
+		text-align: center;
+	}
+	.focusin {
+		outline:0 !important;
+		margin-top: 0px !important;
+		-webkit-transition: all .3s ease-in !important;
+		transition: all .3s ease-in !important;
+	}
+	#skiptocontent {    
+		a:focus {
+			color:#fff !important;
+		}
+	}
+	#main:target::before {
+		content: "";
+		display: block;
+		height: 60px;
+		margin: -60px 0 0;
+	}
+	
+	.hasAdminBar {
+		#skiptocontent {
+			margin-top: -101px;
+		}
+	}
+}
+
+
+// Accessible Styles for Usability
+$outline: 2px solid $primary !important; 
+$secOutline: 2px solid $white !important;
+$thiOutline: 2px solid $danger !important;
+// Focus Overrides
+body.show-focus-outlines {
+    // general outlines
+    *:focus, button.button:focus, input.button:focus, a.button:focus, span.button:focus, .slick-prev:focus, .slick-next:focus, li.product:focus, .card-click-container:focus,
+    input.form-radio:focus + label.form-option, .logo-img:focus {
+        outline: $outline;
+        outline-offset: 2px;
+    }
+    // secondary outlines for primary backgrounds and dark backgrounds
+    header.header>div>a:focus,
+    footer > *:focus, footer span:focus, footer a:focus, footer div:focus, footer .logo-img:focus,
+    .cart-page .button.button--primary:focus, 
+    a.button.button--primary:focus, input.button.button--primary:focus, .btn.btn-primary:focus,
+    .bg-primary *:focus {
+        outline: $secOutline;
+        outline-offset: 2px;
+    }
+    // third outline for primary objects with light backgrounds
+    .btn.btn-primary:focus, .bg-primary input:focus, .bg-primary .btn-white:focus {
+        outline: $thiOutline;
+        outline-offset: 2px;
+    }
+    .btn.btn-primary:focus {
+        color: $white !important;
+    }
+    // high res highlighting
+    // a:focus, [href^=""]:focus {
+    //     background:$dark !important;
+    //     color:$white !important;
+    // }
+}
+
+// color contrast overrides
+.stamped-empty-state div {
+    color: $dark !important;
+}

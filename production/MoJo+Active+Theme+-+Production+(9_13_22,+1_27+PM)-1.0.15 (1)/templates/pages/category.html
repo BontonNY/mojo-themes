@@ -1,0 +1,196 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 476, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 475, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    } 
+}"
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "currentWishlistId" gql.data.customerWishlist.wishlists.edges.0.node.entityId}}
+{{#partial "head"}}
+{{#if pagination.category.previous}}
+<link rel="prev" href="{{pagination.category.previous}}">
+{{/if}}
+{{#if pagination.category.next}}
+<link rel="next" href="{{pagination.category.next}}">
+{{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+{{#if banners.top}}
+<div class="category-page-heading-container">
+    {{{banners.top}}}
+</div>
+{{/if}}
+
+<script>
+    let jsContext = JSON.parse({{jsContext}});
+    const $currentWishlistId = jsContext.currentWishlistId;
+</script>
+
+
+<div class="category-container container custom-category-template">
+
+    <div class="page mb-4">
+
+        <div class="row">
+            <div class="col-12">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            </div>
+        </div>
+        
+        <div class="mb-3 searchspring-header">
+            {{#unless theme_settings.hide_category_page_heading }}
+            <h1 class="mb-3 p-0 text-center">{{category.name}}</h1>
+            {{/unless}}
+
+             <div class="category_above_list cardGrid-Slider">
+                {{{region name="category_above_list"}}}
+            </div>
+
+            {{#if category.description}}
+            <div class="mt-3 mb-3">
+                {{{category.description}}}
+            </div>
+            {{/if}}
+        </div>
+
+
+        {{#if category.subcategories}}
+        <div class="category--subcategories border-bottom mb-6 mt-2">
+            <div class="row">   
+                {{#each (limit category.subcategories 5)}}
+                <div class="col-6 col-md-3 col-xl-2 mb-3">
+                    <div class="card h-auto m-0 p-0">
+                        <a href="{{url}}" class="text-center font-weight-bold">
+                            {{#if image}}<img src="{{getImage image}}" alt="{{image.alt}}" class="img-fluid d-block" />{{/if}}
+                            <span class="px-1 py-3 d-block">{{name}}</span>
+                        </a>
+                    </div>
+                </div>
+                {{/each }}
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="row  custom-category-template">
+            <div class="col-lg-2 filter-block mb-lg-3">
+                
+                <div id="searchspring-sidebar"></div>
+                
+                {{!--
+                {{> components/category/sidebar-categories }}
+                {{> components/category/sidebar }}
+                --}}
+
+                {{{region name="below_sidebar"}}}
+            </div>
+
+
+            <div class="col-lg-10 content-block">
+            
+                {{{region name="category_below_header"}}}
+
+                <div id="searchspring-toolbar"></div>
+
+                {{!--
+                <div class="d-flex align-items-center mb-3 sorts-filter-droprown">
+                    <div class="d-flex align-items-center mt-auto {{#if theme_settings.variant '==' 'sd'}} ml-lg-4 {{/if}} flex-column flex-md-row">
+                        <form class="actionBar button cat-filter-button mt-2 mt-md-auto mb-md-auto btnSortFilter" method="get" data-sort-by>
+                            {{> components/category/sort-box sort=sort}}
+                        </form>
+                    </div>
+
+                    <div class="mt-lg-auto {{#if theme_settings.variant '==' 'sd'}} ml-lg-4 {{/if}} align-items-center ml-3 d-none d-lg-flex mx-auto">
+                        <div class="total-product-count m-0 p-0 d-flex align-items-center"> {{category.total_products}} Item{{#gt category.total_products 1}}s{{/gt}}</div>
+                    </div>
+
+                    <a class="navUser-action navUser-item--compare ml-3 btn btn-primary" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span><span class="sr-only"> products link</span></a>
+
+                    <div class="layout-toggle ml-auto d-none">
+                        <a class="toggle-link grid{{#if theme_settings.product_layout_view '===' 'grid'}} active{{/if}}" href="#" title="Toggle Grid View">
+                            <i class="fa fa-th-large"></i>
+                        </a>
+                        <a class="toggle-link list{{#if theme_settings.product_layout_view '===' 'list'}} active{{/if}}" href="#" title="Toggle List View">
+                            <i class="fa fa-list"></i>
+                        </a>
+                    </div>
+
+                    {{> components/category/toolbar}}
+
+                </div>
+                --}}
+
+                <div class="page-content{{#if theme_settings.product_layout_view '===' 'grid'}} grid-layout{{/if}}{{#if theme_settings.product_layout_view '===' 'list'}} list-layout{{/if}}" id="product-listing-container">
+                    
+                    <div id="searchspring-content"></div>
+                    
+                    {{!--
+                    {{#if category.products}}
+                        {{> components/category/product-listing}}
+                    {{else}}
+                        <p>{{lang 'categories.no_products'}}</p>
+                    {{/if}}
+                    --}}
+                    
+                    {{{region name="category_below_content"}}}
+                </div>
+
+            </div>
+
+        </div>
+
+        {{#comment}}
+        <!--
+        <div class="d-lg-none categories">
+            {{> components/category/sidebar-categories }}
+        </div>
+        -->
+        {{/comment}}
+
+        {{#if customer}}
+            <section class="carousel-section recently-viewed">
+                <h2 class="h2">Recently Viewed Products</h2>
+                <div id="recently-viewed-section" class="productCarouselRecentlyViewed owl-carousel" data-list-name="Recently Viewed Products">
+                    
+                </div>
+            </section>
+        {{/if}}
+
+    </div>
+
+</div>
+{{/partial}}
+{{> layout/base-full}}

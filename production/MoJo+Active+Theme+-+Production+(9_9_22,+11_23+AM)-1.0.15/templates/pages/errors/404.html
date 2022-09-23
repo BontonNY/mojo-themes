@@ -1,0 +1,19 @@
+{{#partial "page"}}
+
+
+<div class="page container py-4">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <section class="page-content page-content--centered">
+        <h1 class=" ">{{lang 'page_not_found.page_heading'}}</h1>
+        <p class="u-textAlignCenter">
+            Sorry. That page seems to have mysteriously disappeared. We’re pretty sure whatever it was would have gone great with your outfit/room/ensemble/etc…   
+        </p >
+        <p class="u-textAlignCenter">Maybe we can make it up to you with one of the other stylish trendsetting options on our site:</p>
+        <div class="navbar">
+        {{> components/common/search-box}}
+        </div>
+    </section>
+</div>
+
+{{/partial}}
+{{> layout/base}}

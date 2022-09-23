@@ -1,0 +1,120 @@
+---
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 7, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+
+<div class="page container">
+    
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{{region name="contact_us_top_bar"}}}
+
+
+    <!-- {{#unless theme_settings.hide_contact_us_page_heading }}
+        <h1 class="mb-4">{{page.title}}</h1>
+    {{/unless}} -->
+
+    {{#if page.sub_pages}}
+        <nav class="navBar navBar--sub">
+            <ul class="navBar-section account-navigation">
+                {{#each page.sub_pages}}
+                    <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                {{/each}}
+            </ul>
+        </nav>
+    {{/if}}
+    <!-- {{{region name="contact_us_content"}}} -->
+    <style>
+        section.bx-section{
+            text-align: center;
+            padding: 3em;
+        }
+        .bx-gray-banner-cards{
+            background: #f6f6f6;            
+        }        
+        section .bx-cards > div{
+            flex: 1;
+            background: white;
+            padding: 2em;
+            margin: 1em;            
+        }
+        section .bx-cards a{
+            display: block;
+        }
+        @media only screen and (min-width: 700px) {
+            section .bx-cards{
+                display: flex;
+            }
+        }
+    </style>
+    <section class="bx-section bx-gray-banner-cards">
+        <h2>Need Help?</h2>
+        <p>Checkout our self-service tool to get help</p>
+        <div class="bx-cards">            
+            <div>                
+                <div>
+                    <h3 class="card-text">Returns</h3>
+                    <a href="/returns/">Start a Return</a>
+                    <a href="/return-policy/">Learn about our Returns Policy</a>
+                </div>
+            </div>
+            <div>                
+                <div>
+                    <h3 class="card-text">Shipping</h3>
+                    <a href="/shipping-policy/">Learn about our Shipping Policy</a>
+                </div>
+            </div>
+            <div>                
+                <div>
+                    <h3 class="card-text">Order</h3>
+                    <a href="/login.php?from=account.php%3Faction%3Dorder_status">Check your Order Status</a>
+                </div>
+            </div>                        
+        </div>
+    </section>
+
+    <section class="bx-section">
+        <h2>Still Need Help?</h2>
+        <p>Contact Us Below</p>
+        <div data-tf-widget="o1fR1vNc" data-tf-iframe-props="title=Contact Us" data-tf-medium="snippet" style="width:100%;height:400px;"></div>
+        <script src="//embed.typeform.com/next/embed.js"></script>
+    </section>
+
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

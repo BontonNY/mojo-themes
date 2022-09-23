@@ -1,0 +1,16 @@
+{{#partial "page"}}
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/account/navigation account_page='addresses'}}
+    <h1 class=" ">{{lang 'account.addresses.heading' }}</h2>
+
+    {{#if customer.error}}
+        {{>components/common/alert-error customer.error}}
+    {{/if}}
+    {{#if customer.success}}
+        {{>components/common/alert-success customer.success}}
+    {{/if}}
+    {{> components/account/address-list }}
+</div>
+{{/partial}}
+{{> layout/base}}

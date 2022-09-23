@@ -1,0 +1,25 @@
+<div class="form-fieldset actionBar-section col-per-row d-none d-md-block mt-2 mt-md-auto mb-md-auto">
+    <legend class="sr-only">Columns Per Rows</legend>
+    <div class="sort-control-container">
+        <label class="form-label sr-only" for="c_rows">{{lang 'common.number_products_rows.show'}}:</label>
+        <span>{{lang 'common.number_products_rows.show'}}: </span>
+        <select class="form-select form-select-numbers-only" id="c_rows">
+            <option value="less">4</option>
+            <option value="more">6</option>
+        </select>
+    </div>
+</div>
+    
+<div class="form-fieldset actionBar-section  product-per-page mt-2 mt-md-auto mb-md-auto">
+    <legend class="sr-only">Products Per Page</legend>
+    <div class="sort-control-container">
+        <label class="form-label sr-only" for="limit">{{lang 'common.number_products.show'}}:</label>
+        <span class="d-none d-md-block">{{lang 'common.number_products.show'}}: </span>
+        <select class="form-select form-select-numbers-only" name="limit" id="limit" onchange="location='?limit='+this.value">
+            <option value="8"  {{#if '8' '==' theme_settings.categorypage_products_per_page }}selected{{/if}}>8 </option>
+            <option value="12" {{#if '12' '==' theme_settings.categorypage_products_per_page }}selected{{/if}}>12 </option>
+            <option value="24" {{#if '24' '==' theme_settings.categorypage_products_per_page }}selected{{/if}}>24</option>
+            <option value="48" {{#if '48' '==' theme_settings.categorypage_products_per_page }}selected{{/if}}>48</option>
+        </select>
+    </div>
+</div>

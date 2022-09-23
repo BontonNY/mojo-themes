@@ -1,0 +1,36 @@
+{{#unless theme_settings.hide_breadcrumbs }}
+<div class="pt-3">
+    <div class="breadcrumbs">
+        <div class="container mt-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                
+                {{#each breadcrumbs}}
+                    {{#if ../page_type '==' 'wishlist'}}
+                        {{#if @last}}
+                        <li class="breadcrumb-item {{#if @last}}active{{/if}}">
+                            <a href="{{../../../urls.account.wishlists.all}}">
+                                <span>{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</span>
+                            </a>
+                        </li>
+                        {{/if}}
+                    {{/if}}                
+                    <li class="breadcrumb-item {{#if @last}}active{{/if}}" {{#if @last}}aria-current="page" {{/if}}>
+                        {{#or @last (if url "==" null)}}
+                            
+                            <meta itemprop="item" content="{{url}}">
+                            <span itemprop="name">{{name}}</span>
+                        {{else}}
+                            <a href="{{url}}" itemprop="item"><span itemprop="name">{{name}}</span></a>
+                        {{/or}}
+                        <meta itemprop="position" content="{{add @index 1}}" />
+                    </li>
+                    {{/each}}
+
+                    
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+{{/unless}}
