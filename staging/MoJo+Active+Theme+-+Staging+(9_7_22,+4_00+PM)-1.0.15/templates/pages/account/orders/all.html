@@ -1,0 +1,41 @@
+---
+customer:
+    orders:
+        limit: 10
+---
+
+{{#partial "page"}}
+
+<div class="container orders-template">
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+  {{> components/account/navigation account_page='orders'}}
+  <h1 class=" ">{{lang 'account.orders.heading' }}</h1>
+  <div class="account-body py-3">
+    <section class="account-content">
+      {{#if customer.orders.length}}
+        {{> components/common/small-paginator pagination.orders}}
+        <div class="account-head">
+          {{#if customer.store_credit.value '>' 0}}
+          <div class="alert alert-default alertBox--storeCredit">
+            {{{lang 'common.store_credit'
+            store_credit=customer.store_credit.formatted}}}
+          </div>
+          {{/if}}
+        </div>
+        {{> components/account/orders-list orders=customer.orders}} 
+      {{else}} 
+        <div class="account-head">
+          {{#if customer.store_credit.value '>' 0}}
+          <div class="alert alert-default alertBox--storeCredit">
+            {{{lang 'common.store_credit'
+            store_credit=customer.store_credit.formatted}}}
+          </div>
+          {{/if}}
+        </div>
+        {{> components/common/alert-info (lang 'account.orders.none')}} 
+      {{/if}}
+    </section>
+  </div>
+</div>
+
+{{/partial}} {{> layout/base}}

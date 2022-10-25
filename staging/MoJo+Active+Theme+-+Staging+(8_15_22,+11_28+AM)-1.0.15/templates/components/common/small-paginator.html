@@ -1,0 +1,36 @@
+<nav class="pagination-list small-paginator">
+    <ul class="pagination m-0">
+        {{#if previous}}
+            <li class="page-item page-item--previous">
+                <a class="page-link nowrap" href="{{previous}}" data-faceted-search-facet>
+                    <!-- <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>
+                        </svg>
+                    </i>-->
+                    {{lang 'common.previous'}}
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if this.links.length}}
+            <li class="page-item nowrap d-flex align-items-center justify-content-center">{{lang 'common.paginator.page_of' current=this.current total=this.links.length}}</li>
+        {{else}}
+            <li class="page-item nowrap d-flex align-items-center justify-content-center">{{lang 'common.paginator.page_of' current=1 total=1}}</li>
+        {{/if}}
+
+        {{#if next}}
+            <li class="page-item page-item--next">
+                <a class="page-link nowrap" href="{{next}}" data-faceted-search-facet>
+                    {{lang 'common.next'}}
+                    <!-- <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-right"></use>
+                        </svg>
+                    </i>-->
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+</nav>
+

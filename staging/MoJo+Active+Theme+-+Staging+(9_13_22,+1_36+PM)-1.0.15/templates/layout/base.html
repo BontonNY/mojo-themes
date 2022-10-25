@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>
+            {{#if page_type '==' 'search'}}
+                {{head.title}}
+            {{else}}
+                {{head.title}}
+                {{#comment}}
+                <!-- WAS GIVING SERVER ERROR. TEMP FIX.
+                {{#if (last (split head.title "-")) '==' 'Ton'}}
+                    {{join (split (chop (first (split head.title settings.store_name))) "-") '|'}} | {{settings.store_name}}
+                {{else if (first (split head.title "-")) '==' 'Bon'}}
+                    {{settings.store_name}} | {{join (split (chop (last (split head.title settings.store_name))) "-") '|'}}     
+                {{else if (occurrences (last (split head.title "-")) 'Not Found') '==' '1'}}
+                    {{settings.store_name}} | Not Found
+                {{else}}
+                    {{#if (occurrences head.title "-") '==' '0'}}
+                        {{chop head.title}}                
+                    {{else}}
+                        {{first (split head.title "-")}} | {{last (split head.title "-")}}
+                    {{/if}}
+                {{/if}}
+                -->
+                {{/comment}}
+            {{/if}}
+        </title>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-M4MGF35');</script>
+        <!-- End Google Tag Manager -->
+        
+        {{{ resourceHints }}}
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
+        <link rel="preconnect" href="https://fonts.googleapis.com" as="style" crossorigin>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" as="style" crossorigin>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        {{!-- Change document class from no-js to js so we can detect this in css --}}
+        <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+        <script>window.lazySizesConfig = window.lazySizesConfig || {};window.lazySizesConfig.loadMode = 1;window.mc = window.mc || {};</script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+        <script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
+        <noscript>{{ getFontsCollection }}</noscript>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{{head.scripts}}}
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'default_messages')}} 
+        {{!-- Inject Storefront API Token into JS context so we can use it in our JavaScript --}}
+        {{~inject 'storefrontAPIToken' settings.storefront_api.token}}
+        <script>bcJsContext = {{jsContext}};</script>
+        <style>
+            :root{
+                --bolt-button-hover-color:#D83934;
+                --form-button-color:#D83934;
+                --bolt-primary-action-color:#D83934;
+            }        
+        </style>
+        
+        {{assignVar 'ss_site_id' 'vg4clw'}}
+        {{#or category brand}}
+        	{{assignVar 'ss_defer_config' 'not-defer'}}
+        {{else}}
+        	{{assignVar 'ss_defer_config' 'defer'}}
+        {{/or}}
+        {{#comment}}
+        <!--
+        <script type="text/javascript" src="https://snapui.searchspring.io/{{getVar 'ss_site_id'}}/bundle.js" id="searchspring-context" {{getVar 'ss_defer_config'}}>
+        	{{#if customer}}shopper = { id : "{{ customer.id }}", group : "{{ customer.customer_group_id }}" };{{/if}}
+        	{{#if category}}
+        		{{#if category.id '===' 8532}}
+        		{{else}} 
+        			category = { id : "{{ category.id }}", name : "{{#replace '"' category.name}}&quot;{{else}}{{category.name}}{{/replace}}", path : "{{#each breadcrumbs}}{{#unless @first}}{{#replace '"' name}}&quot;{{else}}{{name}}{{/replace}}{{#unless @last}}>{{/unless}}{{/unless}}{{/each}}" };
+        		{{/if}}
+        	{{else if brand}}
+        		brand = "{{#replace '"' brand.name}}&quot;{{else}}{{brand.name}}{{/replace}}";
+        	{{/if}}
+        </script>
+        -->
+        {{/comment}}
+        
+    </head>
+    
+    <body class="page_type-{{page_type}} template_file-{{#replace '/' template_file}}_{{else}}{{template_file}}{{/replace}}{{#if category}}{{#if category.id '===' 8532}} ss-shop{{/if}}{{/if}}">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4MGF35"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    	<div>
+            <p id="skiptocontent" class="ax-bar"><a href="#main" class="btn btn-primary my-2">Skip to Main Content</a></p>
+
+            {{~#and settings.privacy_cookie settings.is_eu_ip_address}}
+                {{> components/common/cookie}}
+            {{/and}}
+
+            {{> components/common/header }}
+            {{> components/common/body }}
+            {{> components/common/footer }}
+
+            <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+            <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+            <script async src="{{cdn 'assets/dist/theme-bundle.apps.js'}}"></script>
+            <script>window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();</script>
+
+            {{> components/common/alert-login}}
+
+            {{{footer.scripts}}}
+            <div id="slip-mask"></div>
+            <div id="viewport"></div>
+        </div>
+    </body>
+</html>

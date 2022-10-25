@@ -1,0 +1,40 @@
+{{#if bulk_discount_rates.length}}
+    {{#if product}}<dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>{{/if}}
+    <dd class="productView-info-value">
+        <a href="{{product.url}}#bulk_pricing"
+           {{#unless is_ajax }}data-toggle="modal" data-target="#modal-bulk-pricing"{{/unless}}>
+            {{lang 'products.bulk_pricing.view'}}
+        </a>
+    </dd>
+    <div id="modal-bulk-pricing" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-inner-content">
+                    <div class="modal-body">
+                        <p>{{lang 'products.bulk_pricing.instructions'}}</p>
+                        <ul>
+                            {{#each bulk_discount_rates}}
+                            <li>
+                                {{lang 'products.bulk_pricing.range' min=min max=max}}
+                                {{#if type '===' 'percent'}}
+                                {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                                {{else if type '===' 'fixed'}}
+                                {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                                {{else if type '===' 'price'}}
+                                {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                                {{/if}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}

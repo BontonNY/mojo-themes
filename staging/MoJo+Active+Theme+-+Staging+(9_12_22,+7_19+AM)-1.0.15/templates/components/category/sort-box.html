@@ -1,0 +1,20 @@
+<fieldset class="form-fieldset actionBar-section cat-filter-field">
+    <legend class="sr-only">Sort Order Select Options</legend>
+
+    <div class="sort-control-container">
+        <label class="form-label sr-only" for="sort">{{lang 'common.sorter.sort_by'}}</label>
+        <span>Sort: </span>
+        <select class="" name="sort" id="sort-control">
+            <option disabled value=""></option>
+            <option value="featured" {{#if sort '==' 'featured'}}selected{{/if}}>{{lang 'common.sorter.featured'}}</option>
+            <option value="newest" {{#if sort '==' 'newest'}}selected{{/if}}>{{lang 'common.sorter.newest'}}</option>
+            <option value="bestselling" {{#if sort '==' 'bestselling'}}selected{{/if}}>{{lang 'common.sorter.top_sellers'}}</option>
+            <option value="alphaasc" {{#if sort '==' 'alphaasc'}}selected{{/if}}>{{lang 'common.sorter.alpha_asc'}}</option>
+            <option value="alphadesc" {{#if sort '==' 'alphadesc'}}selected{{/if}}>{{lang 'common.sorter.alpha_desc'}}</option>
+            <option value="avgcustomerreview" {{#if sort '==' 'avgcustomerreview'}}selected{{/if}}>{{lang 'common.sorter.reviews'}}</option>
+            <option value="priceasc" {{#if sort '==' 'priceasc'}}selected{{/if}}>{{lang 'common.sorter.price_asc'}}</option>
+            <option value="pricedesc" {{#if sort '==' 'pricedesc'}}selected{{/if}}>{{lang 'common.sorter.price_desc'}}</option>
+        </select>
+    </div>
+
+</fieldset>

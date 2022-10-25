@@ -1,0 +1,1 @@
+{"components/common/alert-login":"<script>\r\n    window.isCustomer = {{#if customer.id}}true{{else}}false{{/if}};\r\n</script>\r\n"}

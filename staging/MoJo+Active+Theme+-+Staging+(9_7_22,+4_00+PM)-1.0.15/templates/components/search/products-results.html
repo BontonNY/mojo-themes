@@ -1,0 +1,19 @@
+{{#if product_results.products.length '>' 0 }}
+<div class="searchList searchList--products" data-layout="" data-columns="">
+    {{#each product_results.products}}
+    <div class="searchList-item">
+        <a href="{{url}}">
+            <figure>
+                <img class="lazyload img-fluid mx-auto card-image-normal" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+            </figure>
+            <div>
+                <div class="search-brand"><a href="{{product.brand.url}}">{{product.brand.name}}</a></div>
+                <div class="search-title">{{name}}</div>
+                <div class="search-reviews"></div>
+                <div class="search-price">{{> components/products/price price=price schema_org=schema}}</div>
+            </div>
+        </a>
+    </div>
+    {{/each}}
+</div>
+{{/if}}

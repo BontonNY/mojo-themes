@@ -1,0 +1,7 @@
+<section class="productCarousel owl-carousel" data-list-name="{{list}}" data-count="{{columns}}">
+    {{#each products}}
+    <div class="productCarousel-slide mb-3">
+        {{> components/products/card-cr settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+    </div>
+    {{/each}}
+</section>

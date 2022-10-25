@@ -1,0 +1,92 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 7, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+    <div class="productView-container product-layout-v2">
+        <div class="container-full">
+            <div class="container">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+                <div itemscope itemtype="http://schema.org/Product">
+                    {{> components/products/product-view-v2 schema=true  }}
+                </div>
+            </div>
+            <div class="container bg-white">
+                {{{region name="product_below_content"}}}
+  
+                {{#if product.videos.list.length}}
+                    {{> components/products/videos product.videos}}
+                {{/if}}
+
+                {{#if product.related_products}}
+                    <section class="carousel-section">
+                        <h2 class="h2" >{{lang 'products.related_products'}}</h2>
+                        {{#if settings.data_tag_enabled}}
+                            {{> components/products/carousel products=product.related_products columns=5 list="You may also like..."}}
+                        {{else}}
+                            {{> components/products/carousel products=product.related_products columns=5}}
+                        {{/if}}
+                    </section>
+                {{/if}}
+
+                {{#all settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true)}}
+                    {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                {{/all}}
+
+                {{#if customer}}
+                    <section class="carousel-section recently-viewed">
+                        <h2 class="h2">Recently Viewed Products</h2>
+                        <div id="recently-viewed-section" class="productCarouselRecentlyViewed owl-carousel" data-list-name="Recently Viewed Products">
+                            
+                        </div>
+                    </section>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> layout/base-full}}

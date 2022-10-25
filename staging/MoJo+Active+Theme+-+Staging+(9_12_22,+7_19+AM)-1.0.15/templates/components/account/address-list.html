@@ -1,0 +1,50 @@
+{{#unless customer.addresses}}
+    {{> components/common/alert-info (lang 'account.addresses.no_addresses')}}
+{{/unless}}
+
+<ul class="list-unstyled row my-3">
+    {{#each customer.addresses}}
+        <li class="col-4 pl-0">
+            <div class="card">
+                <div class="card-body bg-light text-left">
+                    <div class="h6">{{first_name}} {{last_name}}</div>
+                    <ul class="list-unstyled">
+                        <li>{{{company}}}</li>
+                        <li>{{{address1}}}</li>
+                        <li>{{{address2}}}</li>
+                        <li>{{{city}}}{{#if state}}, {{state}}{{/if}} {{zip}}</li>
+                        <li>{{country}}</li>
+                    </ul>
+                    {{#if phone}}
+                        <dl class="address-details">
+                            <dt class="address-label">{{lang 'account.addresses.phone' }}</dt>
+                            <dd class="address-description">{{phone}}</dd>
+                        </dl>
+                    {{/if}}
+                    <form action="{{delete_url}}" method="post" data-delete-address="{{lang 'forms.address.confirm_delete'}}">
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-outline-secondary btn-sm"> 
+                                <i class="fas fa-trash"></i>
+                                <span class="sr-only">{{lang 'common.delete' }}</span>
+                            </button>
+                            <a class="btn btn-outline-secondary btn-sm" href="{{edit_url}}">
+                                <i class="fas fa-pencil"></i>
+                                {{lang 'common.edit' }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </li>
+    {{/each}}
+    <li class="col-4">
+        <a class="card" href="{{urls.account.add_address}}">
+            <span class="card-body bg-light d-flex justify-content-center align-items-center">
+                <span class="address-addNew">
+                    <i class="fas fa-plus fa-2x"></i>
+                    <div class="h6">{{lang 'account.addresses.new_address' }}</div>
+                </span>
+            </span>
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,52 @@
+---
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 7, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+customer:                         
+    wishlists:
+        limit:
+---
+{{#partial "page"}}
+
+<div class="container page-container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <div class="page row">
+        <div class="col-12">
+            {{{region name="page_builder_content"}}}
+        </div>
+    </div>
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

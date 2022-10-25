@@ -1,0 +1,3 @@
+{
+  "components/search/page-results": "{{#if content_results.length '>' 0}}\n<div class=\"search-panel--webpages\">\n    <div class=\"searchList\">\n        {{#each content_results}}\n        <div class=\"searchList-item\" data-url=\"{{url}}\">\n            <a href=\"{{url}}\">\n                <figure></figure>\n                <div>\n                    <div class=\"search-title\">{{title}}</div>\n                    <div class=\"search-sku\">{{sku}}</div>\n                    <div class=\"search-desc\">{{{content}}}</div>\n                </div>\n            </a>\n        </div>\n        {{/each}}\n    </div>\n</div>\n{{/if}}\n"
+}

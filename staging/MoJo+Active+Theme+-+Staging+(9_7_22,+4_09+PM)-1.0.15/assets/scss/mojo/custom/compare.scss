@@ -1,0 +1,102 @@
+.compareTable {
+  border-top: 1px solid #e5e5e5;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.compareTable-row {
+  vertical-align: top;
+}
+
+.compareTable-row + .compareTable-row .compareTable-heading,
+.compareTable-row + .compareTable-row .compareTable-item {
+  border-top: 1px solid #e5e5e5;
+}
+
+.compareTable-row + .compareTable-row .compareTable-heading:empty {
+  border-top: 0;
+}
+
+.compareTable-heading {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 1.28571rem 1rem;
+  position: relative;
+  text-align: right;
+  width: 0;
+}
+
+@media (min-width: 801px) {
+  .compareTable-heading {
+    width: 25%;
+  }
+}
+
+.compareTable-headingText {
+  position: absolute;
+  top: 1.28571rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 801px) {
+  .compareTable-headingText {
+    position: inherit;
+    top: inherit;
+  }
+}
+
+.compareTable-item {
+  padding: 3.28571rem 1rem 1.28571rem;
+}
+
+@media (min-width: 801px) {
+  .compareTable-item {
+    padding-top: 1.28571rem;
+  }
+}
+
+.compareTable-removeProduct {
+  background-color: #e5e5e5;
+  border-bottom-left-radius: 4px;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color 0.15s ease;
+  width: 2.5rem;
+  text-align: center;
+}
+
+.compareTable-removeProduct .icon {
+  fill: #757575;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+}
+
+.compareTable-product {
+  font-weight: 400;
+  padding: 2rem 1rem 1.28571rem;
+}
+
+.compareTable-product .card {
+  margin-bottom: 0;
+}
+
+.compareTable-product .card-body {
+  min-height: 6rem;
+  padding-top: 1rem;
+}
+
+.compareTable-action {
+  padding: 1rem;
+}
+
+.compareTable-action .button {
+  display: block;
+  padding-left: 0.78571rem;
+  padding-right: 0.78571rem;
+  width: 100%;
+}

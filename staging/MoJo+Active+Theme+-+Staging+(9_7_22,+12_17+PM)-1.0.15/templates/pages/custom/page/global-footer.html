@@ -1,0 +1,50 @@
+{{#partial "page"}}
+
+<footer class="footer" role="contentinfo">
+    <div class="container pb-6 pt-8  ">
+        <div class="footer-middle row flex-grow-1 mt-6">
+
+            {{#if settings.show_newsletter_box}}
+                <div class="col-12 col-md-12 col-xl-4 mb-4 mb-xl-0  news-letter-section">
+                    {{region name="footer_subscription_form"}}
+                    {{> components/common/subscription-form}}
+                </div>
+            {{/if}}
+            <div class="col-12 col-md-6 col-lg-4 offset-xl-2 col-xl-2 mb-md-4 mb-xl-0 ft-links">
+                {{region name="footer_links_1"}}
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2 mb-md-4 mb-xl-0  ft-links">
+                {{region name="footer_links_2"}}
+            </div>
+            <!--<div class="col-12 col-md-6 col-lg-3 col-xl-2 mb-md-4 mb-xl-0  ft-links">
+                {{region name="footer_links_3"}}
+            </div> -->
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2 mb-md-4 mb-xl-0  ft-links">
+                {{region name="footer_links_4"}}
+                
+            </div>
+            
+        </div>
+        <div class="bottom_footer">
+            {{region name="bottom_footer"}}
+        </div>
+
+        <div class="br-top    footer-btm  container justify-content-center d-flex justify-content-between">
+            
+            {{#if theme_settings.show_copyright_footer}}
+                <div class="footer-copyright  ">
+                    <span>&copy;{{moment "now" "YYYY"}} {{region name="footer_copyright"}}</span> 
+                </div>
+            {{/if}}
+            <div class="footer-bottom-links  ">
+                {{region name="bottom_footer_links"}}
+            </div>
+        </div>
+
+    </div> 
+    
+</footer>
+
+{{/partial}}
+
+{{> layout/base-lite}}

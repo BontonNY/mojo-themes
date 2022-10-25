@@ -1,0 +1,8 @@
+<div class="form-group" id="{{id}}" data-validation="{{validation}}">
+    <label class="form-label" for="{{id}}_input">{{label}}
+        {{#if required}}
+            <span class="required">{{lang 'common.required' }}</span>
+        {{/if}}
+    </label>
+    <textarea name="{{name}}" id="{{id}}_input" data-label="{{label}}" rows="{{rows}}" aria-required="{{required}}" class="form-control" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>{{value}}</textarea>
+</div>

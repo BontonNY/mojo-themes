@@ -1,0 +1,146 @@
+{{#if banners.bottom}}
+	{{#if settings.data_tag_enabled}}
+	<div class="banners" data-banner-location="bottom">
+		{{#each (limit banners.bottom_metadata 1)}}
+		<div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+			<div data-event-type="promotion-click">
+				{{{this.content}}}
+			</div>
+		</div>
+		{{/each}}
+	</div>
+	{{else}}
+	<div class="banners" data-banner-location="bottom">
+		<div class="banner">
+			{{{limit banners.bottom 1}}}
+		</div>
+	</div>
+	{{/if}}
+{{/if}}
+
+{{#contains page_type "account"}}
+	<footer id="get_footer" class="footer {{#if customer}} customer-logged-in {{/if}}" role="contentinfo"></footer>
+	{{else}}
+		{{#any (if page_type '==' 'login') (if page_type '==' 'wishlists') (if page_type '==' 'wishlist') (if page_type '==' 'shippingaddressform') (if page_type '==' 'sitemap') (if page_type '==' 'search') (if page_type '==' 'cart') (if page_type '==' 'newsletter_subscribe') (if page_type '==' '404') blog.tag }}
+			<footer id="get_footer" class="footer" role="contentinfo"></footer>
+		{{else}}
+		<footer class="footer" role="contentinfo">
+ 
+			<div class="container pb-6 pt-8 ">
+				<div class="footer-middle row flex-grow-1 mt-6">
+
+					<div class="col-12 col-md-12 col-xl-4 mb-xl-0  news-letter-section">
+						{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "footer_subscription_form"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+						{{> components/common/subscription-form}}
+					</div>
+
+					<div class="col-12 col-md-4 col-lg-4 col-xl-2 mb-md-4 mb-xl-0  offset-xl-2 ft-links 123">
+						{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "footer_links_1"}}
+								{{{html}}}								
+							{{/is}}
+						{{/each}}					
+					</div>
+					<div class="col-12 col-md-4 col-lg-4 col-xl-2 mb-md-4 mb-xl-0  ft-links">
+						{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "footer_links_2"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+					<!-- <div class="col-12 col-md-6 col-lg-3 col-xl-2 mb-md-4 mb-xl-0  ft-links">
+						{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "footer_links_3"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div> -->
+					<div class="col-12 col-md-4 col-lg-4 col-xl-2 mb-md-4 mb-xl-0  ft-links">
+						{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "footer_links_4"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+					
+				</div>
+				<div class="bottom_footer">
+					{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+						{{#is name "bottom_footer"}}
+							{{{html}}}
+						{{/is}}
+					{{/each}} 
+				</div>
+ 
+				<div class="br-top    footer-btm   justify-content-center d-flex justify-content-between">
+					
+					{{#if theme_settings.show_copyright_footer}}
+						<div class="footer-copyright  ">
+							<span>&copy;{{moment "now" "YYYY"}} 
+							{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+								{{#is name "footer_copyright"}}
+									{{{html}}}
+								{{/is}}
+							{{/each}}
+							</span> 
+						</div>
+					{{/if}}
+					<div class="footer-bottom-links  ">
+						{{#each gql.data.getfooter.content.renderedRegionsByPageTypeAndEntityId.regions}}
+							{{#is name "bottom_footer_links"}}
+								{{{html}}}
+							{{/is}}
+						{{/each}}
+					</div>
+				</div>
+
+			</div> 
+			
+		</footer> 
+	{{/any}}
+{{/contains}}
+
+{{#if customer}}
+	<style>#f_loglink{ display: block;}</style>
+{{else}}
+	<style>#f_loglink{ display: none;}	</style>	
+{{/if}}
+{{#if settings.shopper_consent_tracking_enabled}}
+	<style>footer:not(.consented) { padding-bottom: 64px; }</style>
+{{/if}}
+<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Organization",
+	  "address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Suite 411, New York",
+		"postalCode": "NY 10188",
+		"streetAddress": "121 West 36th Street"
+	  },
+	  "email": "customerservice@bonton.com",
+	  "name": "{{settings.store_name}}",
+	  "telephone": "(212) 382-0000",
+	  "image":"{{getImage settings.store_logo.image 'logo_size'}}"
+	}
+</script>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"url": "{{settings.secure_base_url}}",
+		"potentialAction": {
+			"@type": "SearchAction",
+        	"target": {
+          		"@type": "EntryPoint",
+          		"urlTemplate": "{{settings.secure_base_url}}/search.php?q={query}"
+			},
+			"query-input": "required name=query"
+		}		
+	}
+
+</script>

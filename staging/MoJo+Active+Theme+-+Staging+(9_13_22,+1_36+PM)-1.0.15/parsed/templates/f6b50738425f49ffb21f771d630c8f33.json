@@ -1,0 +1,1 @@
+{"components/common/body-lite":"<main id=\"main\" role=\"main\" class=\"body container\">\r\n\t{{#block \"page\"}} {{/block}}\r\n</main>\r\n"}

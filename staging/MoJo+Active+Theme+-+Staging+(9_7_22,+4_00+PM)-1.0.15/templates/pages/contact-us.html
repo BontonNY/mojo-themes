@@ -1,0 +1,76 @@
+---
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 6, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 7, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+
+<div class="page container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{{region name="contact_us_top_bar"}}}
+
+
+    <!-- {{#unless theme_settings.hide_contact_us_page_heading }}
+        <h1 class="mb-4">{{page.title}}</h1>
+    {{/unless}} -->
+
+    {{#if page.sub_pages}}
+        <nav class="navBar navBar--sub">
+            <ul class="navBar-section account-navigation">
+                {{#each page.sub_pages}}
+                    <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                {{/each}}
+            </ul>
+        </nav>
+    {{/if}}
+    {{{region name="contact_us_content"}}}
+    <script src ="https://form.jotform.com/static/feedback2.js" type="text/javascript"></script><script type="text/javascript">
+        var JFL_220312140932036 = new JotformFeedback({
+          formId: '220312140932036',
+          base: 'https://form.jotform.com/',
+          windowTitle: 'Contact Us',
+          background: '#ffffff',
+          fontColor: '#333333',
+          type: '1',
+          height: 873,
+          width: 700,
+          openOnLoad: false
+        });
+    </script>
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

@@ -1,0 +1,29 @@
+<div class="wishlist-add">
+    <div class="wishlist-div">
+        {{#if forms.wishlist.id}}
+            <h6>{{lang 'account.wishlists.edit'}}</h6>
+        {{else}}
+            <h6>{{lang 'account.wishlists.new'}}</h6>
+            <p>{{lang 'account.wishlists.tag_line'}}</p>
+        {{/if}}
+        {{#if forms.wishlist.errors}}
+            {{> components/common/alert-error forms.wishlist.errors}}
+        {{/if}}
+    </div>
+    <div>
+        <div class="form-group">
+            <label class="form-label" for="wishlistname">
+                {{lang 'forms.wishlist.name'}}
+                <span class="required">{{lang 'common.required' }}</span>
+            </label>
+            <input class="form-control" name="wishlistname" id="wishlistname" value="{{forms.wishlist.name}}">
+        </div>
+        <div class="form-field">
+            <input type="checkbox" class="form-checkbox" name="publicwishlist" id="publicwishlist">
+            <label class="form-label" for="publicwishlist">{{lang 'forms.wishlist.public' }}</label>
+        </div>
+        <div class="form-actions">
+            <input type="button" class="btn-create-wishlist btn btn-primary" value="{{lang 'account.wishlists.create'}}">            
+        </div>
+    </div>
+</div>

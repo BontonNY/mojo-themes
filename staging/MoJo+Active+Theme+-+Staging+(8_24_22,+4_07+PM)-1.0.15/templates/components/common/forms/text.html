@@ -1,0 +1,6 @@
+<div class="form-group {{class_name}}" id="{{id}}" data-validation="{{validation}}"{{#if private_id}} data-type="{{private_id}}"{{/if}}>
+    <label class="{{class_name}}" for="{{id}}_input">{{label}}
+        {{#if required}}<span class="required">{{lang 'common.required' }}</span>{{/if}}
+    </label>
+    <input type="text" id="{{id}}_input" data-label="{{label}}" name="{{name}}" class="form-input form-control"{{#if value}} value="{{value}}"{{/if}}{{#if placeholder}} placeholder="{{placeholder}}"{{/if}}{{#if required}} aria-required="true"{{/if}}{{#if private_id}} data-field-type="{{private_id}}"{{/if}}{{#if maxlength}} maxlength="{{maxlength}}"{{/if}}>
+</div>

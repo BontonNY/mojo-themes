@@ -1,0 +1,62 @@
+---
+product_results:
+    limit: {{theme_settings.searchpage_products_per_page}}
+---
+{{inject 'categoryTree' forms.search.category_options}}
+{{inject 'searchProductsPerPage' theme_settings.searchpage_products_per_page}}
+{{#partial "head"}}
+{{#if pagination.product_results.previous}}
+<link rel="prev" href="{{pagination.product_results.previous}}">
+{{/if}}
+{{#if pagination.product_results.next}}
+<link rel="next" href="{{pagination.product_results.next}}">
+{{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+<section class="py-5">
+    {{#if forms.search.query}}
+    <div id="search-results-heading">
+        {{>components/search/heading}}
+    </div>
+    {{/if}}
+</section>
+
+<div class="container">
+    <div class="row" id="searchResults">
+        <div class="col-12 col-lg-2 col-xxl-2">
+            <button class="button cat-filter-button m-auto" id="btnToggleSidebarFilters">Show Filters <i class="fa fa-chevron-down ml-2"></i></button>
+            <div class="searchResults-filters">
+                {{> components/faceted-search/index product_results}}
+            </div>
+        </div>
+        <div class="col-12 col-lg-10 col-xxl-10">
+            <section class="page">
+                <div class="page-content">
+                    <div class="page-content page-content--centered">
+
+                        <div class="search-panel--products" style="display:none;">
+                            {{#if product_results.products.length}}
+                            <h4 class="search-heading">Products</h4>
+                            <div id="product-listing-container" class="grid-layout" class="mb-4">
+                                {{> components/search/product-listing}}
+                            </div>
+                            {{else}}
+                            <h4 class="search-heading">Products</h4>
+                            <p>No products were found matching the search criteria.</p>
+                            {{/if}}
+                        </div>
+
+                         
+
+
+                        {{{region name="search_below_content"}}}
+                    </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}

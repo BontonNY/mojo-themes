@@ -1,0 +1,5 @@
+<div class="product-carousel owl-carousel owl-theme" data-product-type="featured" {{#if settings.data_tag_enabled}} data-list-name="Featured Products" {{/if}}>
+    {{#each products}}
+    {{> components/products/card-ax id=product_id theme_settings=../theme_settings}}
+    {{/each}}
+</div>

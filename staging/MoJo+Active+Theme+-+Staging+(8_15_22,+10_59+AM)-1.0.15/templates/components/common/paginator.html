@@ -1,0 +1,38 @@
+<nav class="Page navigation my-4 d-flex justify-content-between" aria-label="Pagination {{label}}">
+    <ul class="pagination justify-content-center mr-1 previous">
+        {{#if previous}}
+            <li class="page-item page-item--previous">
+                <a class="page-link text-dark nowrap" href="{{previous}}" {{#unless reload}}data-faceted-search-facet{{/unless}} aria-label="Previous Page">
+                    <i class="fal fa-angle-left"></i>
+                    <span>{{lang 'common.previous'}}</span>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+    
+    <ul class="pagination justify-content-center mr-1 middle">
+        {{#each links}}
+            {{#if this.number '==' ../current}}
+                <li class="page-item">
+                    <a class="page-link text-primary active" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}} aria-label="Go To Page {{this.number}}">{{this.number}}</a>
+                </li>
+            {{else}}
+                <li class="page-item">
+                    <a class="page-link text-dark" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}} aria-label="Go To Page {{this.number}}">{{this.number}}</a>
+                </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+
+
+    <ul class="pagination justify-content-end mr-1 next">
+        {{#if next}}
+            <li class="page-item page-item--next">
+                <a class="page-link text-dark nowrap" href="{{next}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                    <span>{{lang 'common.next'}}</span>        
+                    <i class="fal fa-angle-right"></i>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+</nav>

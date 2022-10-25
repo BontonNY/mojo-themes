@@ -1,0 +1,50 @@
+<div class="searchList" {{#if settings.data_tag_enabled}} data-list-name="Quick Search Results" {{/if}}>
+
+    <div class="searchList--type--products">
+        {{#if product_results.products.length '>' 0 }}
+        <h4>Top Products</h4>
+        {{/if}}
+        {{#each (limit product_results.products 4)}}
+        <div class="searchList-item">
+            <a href="{{url}}">
+                <figure>
+                    <img class="lazyload img-fluid mx-auto card-image-normal" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                </figure>
+                <div>
+                    <div class="search-title">{{name}}</div>
+                    <div class="search-sku">{{sku}}</div>
+                    <div class="search-desc">{{truncate summary 100}}</div>
+                    <div class="search-price">{{> components/products/price price=price schema_org=schema}}</div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+
+        {{#if product_results.products.length '>' 4 }}
+        <a class="linkViewMore" href="/search.php?search_query={{forms.search.query}}&section=product">View All {{product_results.products.length}} Products</a>
+        {{/if}}
+    </div>
+
+    <div class="searchList--type--webpages">
+        {{#if content_results.length '>' 0 }}
+        <h4 class="mt-4">Pages</h4>
+        {{/if}}
+        {{#each (limit content_results 4)}}
+        <div class="searchList-item" data-url="{{url}}">
+            <a href="{{url}}">
+                <figure></figure>
+                <div>
+                    <div class="search-title">{{title}}</div>
+                    <div class="search-desc">{{{content}}}</div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+
+    {{#if product_results.products.length '==' 0 }}
+    {{#if content_results.length '==' 0 }}
+    <div class="search-empty p-3 text-center">No results found</div>
+    {{/if}}
+    {{/if}}
+</div>

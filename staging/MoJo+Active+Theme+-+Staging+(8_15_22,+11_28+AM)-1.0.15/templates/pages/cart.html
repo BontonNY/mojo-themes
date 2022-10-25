@@ -1,0 +1,64 @@
+---
+cart: true
+---
+{{#partial "page"}}
+
+<div class="page">
+
+    <div class="container" data-cart>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+        <div class="mb-4">{{> components/cart/page-title}}</div>
+
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
+
+        {{#if cart.items.length}}
+            <div class="loadingOverlay"></div>
+
+            <div data-cart-content>
+                {{> components/cart/content}}
+            </div>
+
+            <div data-cart-totals>
+                {{> components/cart/totals}}
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="cart-totals">
+                {{#if cart.show_primary_checkout_button}}
+                     
+                
+                    <div class="cart-actions cart-buttons">
+                        <a class="btn btn-lg btn-primary text-uppercase font-weight-bold" href="/checkout" title="Click here to proceed to checkout">Check out</a>
+                        <a class="btn btn-primary" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">
+                            {{lang 'cart.continue_shopping'}}
+                        </a>
+                    </div>
+
+                {{else}}
+                    <div class="cart-actions">
+                        <a class="btn btn-primary" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                    </div>
+                {{/if}}
+
+                {{#if cart.additional_checkout_buttons}}
+                    <div class="cart-additionalCheckoutButtons">
+                        {{#each cart.additional_checkout_buttons}}
+                            {{{this}}}
+                        {{/each}}
+                    </div>
+                {{/if}}
+            </div>
+            <div class="clearfix"></div>
+        {{else}}
+            <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+
+    </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}
+

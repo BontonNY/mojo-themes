@@ -1,0 +1,3 @@
+{
+  "components/custom/json-this": "{{!\n    This simple and generic Handlebars template\n    returns the full BigCommerce context\n    provided for the current request.\n\n    The JSON in the response shall be parsed\n    at the front-end JavaScript code,\n    to use the resulting data.\n\n    Used by brandlabs-bigcommerce packages.\n}}\n\n{{{json this}}}\n"
+}
