@@ -1,0 +1,25 @@
+<table class="table table-striped m-0 product-details-table" style=" border-radius: 4px;
+box-shadow: 0px 3px 7px 0 rgba(0, 0, 0, 0.25);">
+    {{#unless (occurrences (toLowerCase theme_settings.pdp-brand-list) (toLowerCase product.brand.name))}}
+        {{#if product.brand}}
+        <tr>
+            <th>Brand</th>
+            <td {{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand" {{/if}}>
+                <meta itemprop="name" content="{{product.brand.name}}" />
+                {{product.brand.name}}
+            </td>
+        </tr>
+        {{/if}}
+    {{/unless}}
+    
+    {{#each product.custom_fields}}
+    <tr data-field-row="{{name}}">
+        <th>{{name}}</th>
+        <td>{{value}}</td>
+    </tr>
+    {{/each}}
+</table>
+<button id="table-expansion" class="btn btn-lg btn-outline-primary mt-3 font-weight-bold d-none">
+    <span class="mr-2">EXPAND</span> 
+    <i class="fa fa-plus-circle"></i>
+</button>

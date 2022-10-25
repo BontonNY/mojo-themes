@@ -1,0 +1,64 @@
+<ul class="tabs" data-tab>
+    <li class="tab is-active">
+        <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+    </li>
+    {{#if product.warranty}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</a>
+        </li>
+    {{/all}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs product.reviews.total}}
+        <li class="tab">
+            <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+        </li>
+    {{/all}}
+</ul>
+<div class="tabs-contents">
+    <div class="tab-content is-active" id="tab-description">
+        {{{product.description}}}
+ 
+        <p><strong>Item: </strong> #{{product.sku}}</p>
+        
+        {{#each product.custom_fields}}                
+            {{#and  (if name '==' 'prop65') ( if (toLowerCase value) '==' 'yes') }}
+                <!-- <strong>Warning:</strong> -->
+                <div class="alert alert-default d-flex p-0 my-4 prop65Warning">
+                    <div class="alertBox-column alertBox-icon">
+                        <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+                    </div>
+                    <p class="m-0 ml-2">
+                        <span>
+                            California Residents - Prop65 Warning. This product can expose you to chemical which are known to the State of California to cause cancer, For more information, go to <a href="www.p65warnings.ca.gov" target="_blank">www.p65warnings.ca.gov</a>
+                        </span>
+                    </p>
+                </div>
+            {{/and}}
+        {{/each}}
+
+    </div>
+   {{#if product.warranty}}
+       <div class="tab-content" id="tab-warranty">
+           {{{product.warranty}}}  
+       </div>
+   {{/if}}
+   {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
+         <dl class="productView-info">
+            {{#each product.custom_fields}}
+               <dt class="productView-info-name">{{name}}:</dt>
+               <dd class="productView-info-value">{{{value}}}</dd>
+            {{/each}}
+         </dl>
+      </div>
+   {{/all}}
+   {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+       <div class="tab-content" id="tab-reviews">
+           {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+       </div>
+   {{/all}}
+</div>

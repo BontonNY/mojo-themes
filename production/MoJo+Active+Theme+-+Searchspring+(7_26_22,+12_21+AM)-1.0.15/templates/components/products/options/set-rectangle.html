@@ -1,0 +1,37 @@
+<div class="form-field" data-product-attribute="set-rectangle">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{this.display_name}}:
+        <span data-option-value>Not Selected</span>
+        {{#if required}}
+            <span class="required">{{lang 'common.required' }}</span>
+        {{/if}}
+
+        {{#if this.display_name '==' 'Size'}}
+            <span class="px-3 color-secondary">|</span>
+            {{#comment}}
+            <!--
+            <a href="#" class="size-chart-popup" id="size-chart-popup">Size Chart</a>
+            -->
+            {{/comment}}
+            <div class='prikid-size-chart-button-placeholder'></div>
+        {{/if}}
+
+    </label>
+    {{#each this.values}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_rectangle__{{../id}}_{{id}}"
+            name="attribute[{{../id}}]"
+            value="{{id}}"
+            data-value="{{this.label}}"
+            {{#if selected}}
+                checked
+                data-default
+            {{/if}}
+            {{#if ../required}}required{{/if}}>
+        <label class="form-option" for="attribute_rectangle__{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
+            <span class="form-option-variant">{{this.label}}</span>
+        </label>
+    {{/each}}
+</div>

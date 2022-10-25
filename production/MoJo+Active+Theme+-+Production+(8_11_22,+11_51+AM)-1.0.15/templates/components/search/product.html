@@ -1,0 +1,13 @@
+<div class="searchList-item">
+    <a href="{{product.url}}">
+        <figure>
+            <img class="lazyload img-fluid mx-auto card-image-normal" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}">
+        </figure>
+        <div class="text-center">
+            <div class="search-brand"><a href="{{product.brand.url}}">{{product.brand.name}}</a></div>
+            <div class="search-title">{{product.title}}</div>
+            <div class="search-reviews"></div>
+            <div class="search-price">{{> components/products/price price=product.price schema_org=schema}}</div>
+        </div>
+    </a>
+</div>

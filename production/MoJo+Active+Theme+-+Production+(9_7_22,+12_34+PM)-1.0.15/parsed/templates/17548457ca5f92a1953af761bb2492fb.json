@@ -1,0 +1,3 @@
+{
+  "components/common/alert-info": "  \r\n<div class=\"card my-4 col-12 col-lg-6 p-0 \">\r\n    <div class=\"card-body p-0\">\r\n        <i class=\"fas fa-info-circle\"></i> {{{this}}}\r\n    </div>\r\n</div>  \r\n"
+}

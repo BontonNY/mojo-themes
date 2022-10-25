@@ -1,0 +1,186 @@
+.bc-selected-display {
+  top: unset!important;
+  left: unset!important;
+  bottom: 2px;
+  right: -1px;
+}
+.bc-highlighted-display {
+  top: unset!important;
+  left: unset!important;
+  bottom: 0;
+  right: 2px;
+}
+.bc-selected {
+  .card-helper-text {
+    // base class to define helper text to MC custom elements
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 0.688em;
+    color: $mc;
+    text-align: center;
+  }
+
+  .col-lg-1,
+  .col-md-1 {
+    @extend .col-sm-1;
+  } // make col-lg behave like col-sm
+  .col-lg-2,
+  .col-md-2 {
+    @extend .col-sm-2;
+  }
+  .col-lg-3,
+  .col-md-3 {
+    @extend .col-sm-3;
+  }
+  .col-lg-4,
+  .col-md-4 {
+    @extend .col-sm-4;
+  }
+  .col-lg-5,
+  .col-md-5 {
+    @extend .col-sm-5;
+  }
+  .col-lg-6,
+  .col-md-6 {
+    @extend .col-sm-6;
+  }
+  .col-lg-7,
+  .col-md-7 {
+    @extend .col-sm-7;
+  }
+  .col-lg-8,
+  .col-md-8 {
+    @extend .col-sm-8;
+  }
+  .col-lg-9,
+  .col-md-9 {
+    @extend .col-sm-9;
+  }
+  .col-lg-10,
+  .col-md-10 {
+    @extend .col-sm-10;
+  }
+  .col-lg-11,
+  .col-md-11 {
+    @extend .col-sm-11;
+  }
+  .col-lg-12,
+  .col-md-12 {
+    @extend .col-sm-12;
+  }
+  .offset-md-1,
+  .offset-lg-1 {
+    @extend .offset-sm-1;
+  }
+  .offset-md-2,
+  .offset-lg-2 {
+    @extend .offset-sm-2;
+  }
+  .offset-md-3,
+  .offset-lg-3 {
+    @extend .offset-sm-3;
+  }
+  .offset-md-4,
+  .offset-lg-4 {
+    @extend .offset-sm-4;
+  }
+
+  .col-lg-3.col-md-6 {
+    @extend .col-sm-3;
+  }
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .mc-layout {
+    position: relative;
+
+    &:before {
+      @extend .card-helper-text;
+      top: -18px;
+      content: "MC Layout";
+    }
+
+    > * {
+      // provide helper indicators for custom layouts
+      outline: 1px dashed $mc;
+    }
+  }
+  .mc-image {
+    position: relative;
+    display: block;
+
+    &:before {
+      @extend .card-helper-text;
+      top: -18px;
+      content: "MC Image";
+    }
+
+    > * {
+      // provide helper indicators for custom layouts
+      outline: 1px dashed $mc;
+    }
+  }
+
+  .card-body {
+    position: relative;
+  }
+
+  .mc-accordion {
+    // make accordion content editable in maintenance
+    &:after {
+      @extend .card-helper-text;
+      content: "MC Accordion";
+    }
+
+    .collapse {
+      display: block;
+    }
+
+    div.card-body:after {
+      @extend .card-helper-text;
+      content: "(collapsed content)";
+    }
+  }
+
+  .sr-only {
+    color: $white;
+    clip: unset;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 7px 10px 1px;
+    outline: 1px dashed $mc;
+    background-color: #fff;
+    font-size: 14px;
+    color: $mc;
+    margin-left: 5px;
+    position: relative;
+    min-width: 120px;
+    &:after {
+      @extend .card-helper-text;
+      content: "Screen Reader Text";
+      color: $dark;
+    }
+  }
+
+  .btn-white,
+  .btn-outline-white {
+    outline: 1px dashed $mc;
+  }
+  .btn-outline-white {
+    color: $mc;
+  }
+  .text-white {
+    outline: 1px dashed $mc;
+    color: #000 !important;
+    &:after {
+      @extend .card-helper-text;
+      content: "White Text";
+    }
+  }
+}

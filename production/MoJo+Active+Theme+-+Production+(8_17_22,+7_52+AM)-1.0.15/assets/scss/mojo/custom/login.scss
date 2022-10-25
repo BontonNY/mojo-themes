@@ -1,0 +1,207 @@
+.account-login {
+    #login_pass {
+        border-top: 0;
+    }
+    #login_pass, #login_email {
+        background-color: #fff!important;
+        border-radius: 0;
+        padding: 2rem 1rem;
+    }
+}
+[data-content-region="login_form"]{
+    div[id^="sd-image-"] {
+        &::before{
+            content:"";
+            background-image:     url(../img/top-right.png);
+            background-position:   top  right;
+            background-repeat: no-repeat, no-repeat;
+            background-size: cover, 368px;
+            position: absolute;
+            left: 0;
+            width: 368px;
+            height: 274px;
+            z-index: 100;
+            top: 0;   
+            @include media-breakpoint-down("xl") {
+                width: 240px;
+                height: 179px;
+                background-size: cover, 240px;
+            } 
+            @include media-breakpoint-down("lg") {
+                width: 180px;
+                height: 134px;
+                background-size: cover, 180px;
+            }  
+            @include media-breakpoint-down("md") {
+                width: 280px;
+                height: 206px;
+                background-size: cover, 280px;
+            }  
+            @include media-breakpoint-down("sm") {
+                width: 140px;
+                height: 104px;
+                background-size: cover, 140px;
+            }        
+        }
+    }
+}
+@include media-breakpoint-down("md") {
+    [data-content-region="login_form"]{
+        div[id^="sd-image-"] {
+            height: auto !important;
+        }
+        [data-sub-layout]{
+            &:last-child{
+                margin-top: 30px !important;
+                order: -1;
+            }
+            flex-basis: 100%!important;
+            max-width: 100%!important;
+            width: 100% !important;
+        }
+    }
+}
+.navBar--account{
+    background: transparent !important;
+    border: 0 !important;
+    .nav-link {
+        box-sizing: border-box;
+        border-radius: 100px;
+        padding: 0 15px;
+        height: 50px;
+        line-height: 48px !important;
+        min-width: 92px;
+        text-align: center;
+        margin: 0 10px;
+        color: #666666;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        border: 1px solid #666666;
+        @include media-breakpoint-down("sm") {
+            min-width: 70px;
+            padding: 0 9px;
+        }
+
+        &[aria-label="Sign out"],
+        &:hover{
+            text-decoration: none !important;
+            border: 1px solid #D83934;
+            color: #D83934;
+        }
+    }
+    
+    span.nav-link {
+        &.active{
+            font-weight: 700;
+            background: #D83934;
+            border: 1px solid #D83934;
+            color: #fff;
+        }
+    }
+    .is-active span.nav-link {
+        font-weight: 700;
+        background: #D83934;
+        border: 1px solid #D83934;
+        color: #fff;
+    }
+}
+.orders-template{
+    .account-body{
+        position: relative;
+        nav.pagination-list {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -28px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            color: #333333;
+        }
+    }
+    .header-row{
+        strong{
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            color: #333333;
+        }
+    }
+    .border-bottom {
+        color: #666666;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        border-bottom: 1px solid #DBDADA;
+        @include media-breakpoint-down("md") {
+            max-width: 90%;
+            margin: 10px auto;
+            .row .col-lg-2{
+                text-align: center;
+            }
+        }
+    }
+    .border-bottom .row{
+        align-items: center;
+        .col-lg-2 img {
+            max-width: 134.06px;
+            height: 150px;
+            border: 1px solid #DBDADA;
+            margin: 10px 0;
+          }
+    }
+    .badge-pill{
+        width: 100%;
+        @include media-breakpoint-down("md") {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        height: 50px;
+        line-height: 50px;
+        padding: 0 15px !important;
+        font-weight: 700 !important;
+        font-family: 'Poppins';
+        background: #D83934;
+        border: 2px solid #D83934;
+        box-sizing: border-box;
+        border-radius: 100px;
+        &.Completed,
+        &.Fulfilled{
+            background: #333333;
+            border-color: #333333;
+        }
+    }
+}
+.account-product-figure{
+    img {
+        max-width: 134.06px;
+        height: 150px;
+        border: 1px solid #DBDADA;
+        margin: 10px 0;
+      }
+}
+.account-product-title{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+}
+.page_type-account_order{
+    .definitionList{
+        dt{
+            width: 25%;
+            @include media-breakpoint-down("sm") {
+                width: 40%;
+            }
+        }
+        dd{
+            width: 70%;
+            @include media-breakpoint-down("sm") {
+                width: 55%;
+            }
+        }
+    }
+}

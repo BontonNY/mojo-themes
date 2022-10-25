@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h2 class="modal-header-title">{{lang 'cart.reconfigure_product' name=product_name}}</h2>
+</div>
+<div class="productView-options modal-body" data-product-option-change>
+    <div class="alertMessageBox" hidden>
+        {{> components/common/alert-info}}
+    </div>
+
+    <form id="CartEditProductFieldsForm" method="post" action="cart.php" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="EditProductFieldsInCart">
+        <input type="hidden" name="item_id" value="{{quote_item_id}}">
+
+        {{#each options}}
+            {{{dynamicComponent 'components/products/options'}}}
+        {{/each}}
+
+        <div class="form-actions">
+            <input class="btn btn-primary" type="submit" value="{{lang 'common.save'}}">
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function(){
+        $('[data-product-attribute] select').on('change', function(){
+            console.log('CHANGES')
+            console.log($(this).attr('data-value'))
+            $(this).parent().find('span[data-option-value]').html('');
+            $(this).parent().find('span[data-option-value]').html(
+                $(this).find('option:selected').text()
+            );
+        });
+
+        $('[data-product-attribute] input[type="radio"]').on('click', function(){
+            console.log('CLICKED')
+            $(this).parent().find('span[data-option-value]').html(
+                $(this).attr('data-value')
+            );
+        });
+        
+        $('[data-product-attribute] input[type="radio"]:checked').trigger('click')
+    })
+</script>

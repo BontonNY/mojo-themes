@@ -1,0 +1,108 @@
+---
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 476, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 475, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    } 
+}"
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+<script>
+    let jsContext = JSON.parse({{jsContext}});
+    const $currentWishlistId = jsContext.currentWishlistId;
+</script>
+
+
+{{#partial "head"}}
+{{#if pagination.category.previous}}
+<link rel="prev" href="{{pagination.category.previous}}">
+{{/if}}
+{{#if pagination.category.next}}
+<link rel="next" href="{{pagination.category.next}}">
+{{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+{{#if banners.top}}
+<div class="category-page-heading-container">
+    {{{banners.top}}}
+</div>
+{{/if}}
+
+<div class="category-container container custom-category-template">
+
+    <div class="page mb-4">
+
+        <div class="row">
+            <div class="col-12">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            </div>
+        </div>
+        
+        <div class="mb-6 border-bottom ">
+            {{#unless theme_settings.hide_category_page_heading }}
+            <h1 class="mb-6 p-0 text-left ">{{category.name}}</h1>
+            {{/unless}}
+ 
+
+            {{#if category.description}}
+                <div class="mt-3 mb-3">
+                    {{{category.description}}}
+                </div>
+            {{/if}}
+        </div> 
+        <div class="row  custom-category-template">
+            <div class="col-12 filter-block mb-6">
+                <h3 class="mb-3 p-0 text-left ">Filter Brands By Categories: </h3>
+                {{#if category.subcategories}}
+                <div class="brand-category-filter border-bottom pb-6 mt-2">
+                    <div class="filter-brand-grid">
+                        {{#each category.subcategories}}
+                            <a href="{{url}}" data-cat="{{dashcase name}}" class="text-center br-item">
+                                <span class="px-1 py-3 d-block">{{name}}</span>
+                            </a>              
+                        {{/each}}
+                    </div>
+                </div>
+                {{/if}} 
+            </div>
+
+
+            <div class="col-12 content-block"> 
+                <div class="page-content category-brand-page"> 
+                    {{{region name="below_grid_content"}}}
+                </div>
+            </div> 
+
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base-full}}

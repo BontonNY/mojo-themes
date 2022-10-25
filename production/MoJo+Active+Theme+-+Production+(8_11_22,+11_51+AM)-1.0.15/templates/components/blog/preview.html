@@ -1,0 +1,54 @@
+<article class="blog d-flex align-items-center">
+    <div class="blog-post-figure">
+        {{#if post.thumbnail}}
+            <figure style="max-width: 350px; min-width: 200px;" class="blog-thumbnail shadow-sm mr-3">
+                <a href="{{post.url}}">
+                    {{> components/common/responsive-img
+                        image=post.thumbnail
+                        class="rounded"
+                    }}
+                </a>
+            </figure>
+        {{/if}}
+    </div>
+
+    <div class="blog-post-body">
+        <header class="blog-header">
+            <h2 class="blog-title">
+                {{#if detail}}
+                    {{post.title}}
+                {{else}}
+                    <a href="{{post.url}}">{{post.title}}</a>
+                {{/if}}
+            </h2>
+            <p class="blog-date">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}} on {{/if}}{{post.date_published}}</p>
+        </header>
+
+        <div class="blog-post">
+            {{#if post.body}}
+                {{{post.body}}}
+            {{else}}
+                {{{post.summary}}}
+                {{#if post.show_read_more}}
+                    &hellip; <a href="{{url}}">{{lang 'blog.read_more'}}</a>
+                {{/if}}
+            {{/if}}
+        </div>
+
+
+        {{#if show_tags}}
+            {{#if post.tags}}
+                <ul class="nav mb-1">
+                    {{#each post.tags}}
+                    <li class="nav-item mr-1">
+                        <a class="nav-link badge badge-gray" href="{{url}}">#{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/if}}
+
+        {{>components/common/share}}
+
+    </div>
+</article>

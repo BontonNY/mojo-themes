@@ -1,0 +1,53 @@
+{{#if settings.add_this.buttons}}
+
+<div class="share-link-content">
+
+    
+
+    <a href="javascript:void(0)" class="share-link"><i class="far fa-share-square"></i><span>Share</span></a>
+
+
+
+    <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}" addthis:title="{{title}}">
+        <div class="socialLinks d-flex">
+            {{#each settings.add_this.buttons}}
+            <div class="socialLinks-item socialLinks-item--{{service}}">
+                <a class="addthis_button_{{service}} icon icon--{{service}} btn btn-link text-primary rounded mr-2" {{{annotation}}} aria-label="{{service}}">
+                    {{#if service '===' 'facebook'}}
+                    <i class="fab fa-facebook"></i>
+                    {{else if service '===' 'email'}}
+                    <i class="fa fa-envelope"></i>
+                    {{else if service '===' 'print'}}
+                    <i class="fa fa-print"></i>
+                    {{else if service '===' 'twitter'}}
+                    <i class="fab fa-twitter"></i>
+                    {{else if service '===' 'linkedin'}}
+                    <i class="fab fa-linkedin"></i>
+                    {{else if service '===' 'google'}}
+                    <i class="fab fa-google"></i>
+                    {{else if service '===' 'pinterest'}}
+                    <i class="fab fa-pinterest"></i>
+                    {{/if}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+
+</div>
+
+{{/if}}
+{{#if settings.facebook_like_button.enabled}}
+<iframe class="facebook{{#if settings.facebook_like_button.verb '===' 'recommend'}}Recommend{{else}}Like{{/if}}Btn" style="border:none; overflow:hidden; margin: 0; padding: 0; position:absolute" src="https://www.facebook.com/plugins/like.php?href={{settings.facebook_like_button.href}}&amp;layout=button_count{{#if settings.facebook_like_button.verb '===' 'recommend'}}&amp;action=recommend{{/if}}&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" allowTransparency="true" title="facebook like action">
+</iframe>
+{{/if}}
+
+    <script type="text/javascript" defer src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            if (typeof (addthis) === "object") {
+                addthis.toolbox('.addthis_toolbox');
+            }
+        });
+    </script>

@@ -1,0 +1,6 @@
+{{#each customer.recently_viewed_products.items}}
+    <div class="productCarousel-slide mb-3">
+        {{> components/products/card-ax settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+    </div>
+{{/each}}
+ 

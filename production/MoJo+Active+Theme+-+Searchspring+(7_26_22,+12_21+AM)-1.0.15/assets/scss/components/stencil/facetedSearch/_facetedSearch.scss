@@ -1,0 +1,302 @@
+.blocker {
+  background: rgba(255, 255, 255, 0.5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 500;
+  height: 200vh;
+}
+
+.blocker-container {
+  position: relative;
+}
+
+.textTruncate {
+  padding-bottom: 1.5rem;
+  position: relative;
+  transition: max-height 0.1s ease-out;
+}
+
+.js .textTruncate {
+  max-height: 110px;
+  overflow: hidden;
+}
+
+.js .textTruncate--visible {
+  max-height: 71.42857rem;
+}
+
+.textTruncate-viewMore {
+  background-color: #fff;
+  bottom: 0;
+  padding-top: 10px;
+  position: absolute;
+  width: 100%;
+}
+
+.toggle {
+  border-top: 1px solid #e5e5e5;
+  margin-bottom: 2.28571rem;
+}
+
+.toggle:last-of-type {
+  margin-bottom: 4.57143rem;
+}
+
+.toggle-title {
+  margin-bottom: 2.28571rem;
+}
+
+.toggle-title .toggleLink {
+  float: right;
+  line-height: 24px;
+}
+
+.toggleLink-text {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.toggleLink-text--off {
+  display: inline-block;
+}
+
+.toggleLink.is-open .toggleLink-text--off {
+  display: none;
+}
+
+.toggleLink-text--on {
+  display: none;
+}
+
+.toggleLink.is-open .toggleLink-text--on {
+  display: inline-block;
+}
+
+.toggle-content {
+  display: none;
+}
+
+.toggle-content.is-open {
+  display: block;
+}
+
+.facetedSearch-toggle {
+  @extend .cat-filter-button;
+  display: block;
+  color: #333;
+  font-weight: 400;
+  height: 3rem;
+  line-height: 2.7rem !important;
+  &:hover {
+    color: #333;
+  }
+  i {
+    transition: all 0.5s ease-in-out;
+  }
+  &.is-open {
+    margin-bottom: 1rem;
+    i {
+      transform: rotate(-135deg);
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .facetedSearch-toggle {
+    display: none !important;
+  }
+}
+
+.facetedSearch-toggle-indicator {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  width: 41.66667%;
+  float: left;
+  font-weight: 700;
+  padding: 0;
+  text-align: right;
+}
+
+.facetedSearch-navList {
+  display: none;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.accordion-block {
+  margin-bottom: 0rem;
+
+  a[data-faceted-search-facet] {
+    color: #444;
+    text-decoration: none;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .facetedSearch-navList {
+    display: block !important;
+  }
+}
+
+.facetedSearch-navList.is-open {
+  display: block;
+}
+
+.facetedSearch-navList.is-open .accordion--navList,
+.facetedSearch-navList.is-open .accordion-block:first-child .accordion-navigation {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.facetedSearch-toggle + .facetedSearch-navList,
+.sidebarBlock + .facetedSearch-navList {
+  margin-top: 0rem;
+}
+
+.facetedSearch-toggle + .facetedSearch-navList.is-open,
+.sidebarBlock + .facetedSearch-navList.is-open {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+  .facetedSearch-toggle + .facetedSearch-navList.is-open,
+  .sidebarBlock + .facetedSearch-navList.is-open {
+    // margin-top: 1rem;
+  }
+}
+
+.facetedSearch-navList .navList--inner {
+  margin-left: 1.5rem;
+}
+
+.facet-quick-heading {
+  text-transform: capitalize;
+}
+
+.facetedSearch-optionColumns {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+#facetedSearch {
+  a.btn-clearFilters,
+  a.facetedSearch-clearLink {
+    color: $primary;
+    text-decoration: underline;
+  }
+  .navList-action-close {
+    height: 24px;
+    width: 24px;
+    line-height: 14px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid $primary;
+      color: $primary;
+    }
+  }
+}
+
+.facetedSearch-refineFilters {
+  display: none;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    li {
+      display: inline;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    margin: 4px;
+    white-space: nowrap;
+    display: inline-block;
+    i {
+      margin-left: 0.35rem;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .facetedSearch-refineFilters {
+    display: block;
+  }
+}
+
+.facetedSearch-content--rating .is-selected {
+  font-weight: 700;
+}
+
+.facetLabel {
+  background: #e5e5e5;
+  border-radius: 4px;
+  padding: 0.21429rem 0.5rem 0.21429rem 0.71429rem;
+  text-decoration: none;
+}
+
+.facetLabel .icon {
+  height: 0.85714rem;
+  width: 0.85714rem;
+  display: inline-block;
+  fill: #757575;
+  position: relative;
+  top: -1px;
+}
+
+@media (max-width: 992px) {
+  .facetedSearch-navList {
+    position: relative;
+    z-index: 99;
+    background: #f9f9f9;
+    width: 100%;
+    border: 1px solid $border-color;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 992px) {
+  .facetedSearch-toggle {
+    // margin-bottom: -3rem;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+  .facetedSearch-navList {
+    position: relative;
+    z-index: 99;
+    background: #f9f9f9;
+    width: 100%;
+    border: 1px solid $border-color;
+    padding: 1rem;
+    top: 0rem;
+  }
+  // .btnSortFilter {
+  //   margin-left: 190px;
+  // }
+}
+
+@media (max-width: 767px) {
+  .facetedSearch-toggle {
+    margin-bottom: 0 !important;
+    bottom: unset;
+  }
+  .facetedSearch-navList {
+    top: unset;
+  }
+}

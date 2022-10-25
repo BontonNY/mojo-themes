@@ -1,0 +1,79 @@
+<div class="accordion-block">
+    {{> components/faceted-search/faceted-search-navigation}}
+
+    <div id="facetedSearch-content--{{dashcase facet}}" class="accordion-content ">
+        <form id="facet-range-form" class="form" method="get" data-faceted-search-range novalidate>
+            {{#each current_selected_items}}
+                <input type="hidden" name="{{param_name}}[]" value="{{param_value}}"/>
+            {{/each}}
+            <input type="hidden" name="search_query" value="{{search_query}}">
+            {{#if this.sort}}
+                <input type="hidden" name="sort" value="{{this.sort}}">
+            {{/if}}
+
+            <input type="hidden"  name="min_price" value="{{min_price}}">
+            <input type="hidden"  name="max_price" value="{{max_price}}">
+
+            <div class="price-range-check">
+                <label for="min_max_50"> 
+                    <input id="min_max_50" type="checkbox" name="price-range" class="price-checkbox"  {{#if min_price '==' 0 }} checked {{/if}}  {{#if max_price '==' 50 }} checked {{/if}} data-min-price="0" data-max-price="50">
+                    Under $50
+                </label>
+                <label for="min_max_100"> 
+                    <input id="min_max_100" type="checkbox" name="price-range" class="price-checkbox" {{#if min_price '==' 50 }} checked {{/if}} {{#if max_price '==' 100 }} checked {{/if}} data-min-price="50" data-max-price="100">
+                    $50 - $100
+                </label>
+                <label for="min_max_250"> 
+                    <input id="min_max_250" type="checkbox" name="price-range" class="price-checkbox" {{#if min_price '==' 100 }} checked {{/if}} {{#if max_price '==' 250 }} checked {{/if}} data-min-price="100" data-max-price="250">
+                    $100 - $250
+                </label>
+                <label for="min_max_500"> 
+                    <input id="min_max_500" type="checkbox" name="price-range" class="price-checkbox" {{#if min_price '==' 250 }} checked {{/if}} {{#if max_price '==' 500 }} checked {{/if}} data-min-price="250" data-max-price="500">
+                    $250 - $500
+                </label>
+                <label for="min_max_500_above"> 
+                    <input id="min_max_500_above" type="checkbox" name="price-range" class="price-checkbox" {{#if min_price '==' 500 }} checked {{/if}} {{#if max_price '==' 999999 }} checked {{/if}} data-min-price="500" data-max-price="999999">
+                    $500 & Above
+                </label>
+            </div>
+
+            <label class="label"> Custom Price Range </label>
+
+            <fieldset class="form-fieldset">
+                <div class="form-minMaxRow">
+                    <div class="form-field mb-2">
+                        <input 
+                            placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                            min="1"
+                            class="form-control min-field"
+                            required
+                            type="number"
+                            value="{{min_price}}"
+                        />
+                    </div>
+
+                    <div class="form-field mb-2">
+                        <input 
+                            placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                            min="1"
+                            class="form-control max-field"
+                            required
+                            type="number"
+                            value="{{max_price}}"
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <button class="btn btn-primary" type="submit">
+                            {{lang 'search.faceted.range.update'}}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-inlineMessage"></div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,19 @@
+<form class="form" action="{{urls.subscribe.action}}" method="post">
+    <fieldset class="form-fieldset">
+        <legend class="sr-only">{{lang 'newsletter.subscribe'}}</legend>
+        <input type="hidden" name="action" value="subscribe">
+        <input type="hidden" name="nl_first_name" value="bc">
+        <input type="hidden" name="check" value="1">
+        <div class="form-field">
+            <label class="form-label sr-only" for="nl_email">{{lang 'common.email_address'}}</label>
+            <div class="d-flex news-flex">
+                <input class="form-input form-control" id="nl_email" name="nl_email" type="email" value="" placeholder="{{lang 'newsletter.email_placeholder'}}" aria-label="Enter {{lang 'newsletter.email_placeholder'}} to subscribe to our newsletter.">
+                <button class="nl_form_submit btn btn-primary" type="submit" value="Submit">{{lang 'newsletter.subscribe_submit'}}</button>
+                <span class="js_error"></span>
+            </div>
+            {{#if settings.show_newsletter_summary }}
+                <div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>
+            {{/if}}
+        </div>
+    </fieldset>
+</form>

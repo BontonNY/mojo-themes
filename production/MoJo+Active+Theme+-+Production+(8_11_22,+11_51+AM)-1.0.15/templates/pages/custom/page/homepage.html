@@ -1,0 +1,374 @@
+---
+gql: "query getFooter {
+    getfooter: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 476, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    getMegaNav: site {
+        content {
+            renderedRegionsByPageTypeAndEntityId(entityId: 475, entityPageType: PAGE) {
+                regions {
+                    name
+                    html
+                }
+            }
+        }
+    },
+    customerWishlist:customer{
+        wishlists{
+            edges{
+                node{
+                    isPublic
+                    entityId
+                    name
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+
+
+<div class="page-container container-fluid">
+    
+    <div class="container d-none">
+        <div class="row">
+            <div class="col-md-12">
+                {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            </div>
+        </div>    
+    </div>
+    
+    <div class="container-fluid px-0 top_bar">
+        <div class="row no-gutters">
+            {{{region name="top_bar_image"}}}
+            <div class="container top-bar-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{{region name="top_bar_content"}}}
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+    <div class="container-fluid px-0 home-top-carousel">
+        <div class="row no-gutters">
+            <div class="col-md-12">
+                {{{region name="page_below_header_content"}}}
+            </div>
+        </div>    
+    </div>
+
+    <div class="container">
+
+        <div class="row deal-of-the-day  ">
+            <div class="col-md-12 no-pad-md">
+                {{{region name="deals_of_the_day_header"}}}
+            </div>
+        
+            <div class="  col-md-12 flex deals_of_the_day-carousel owl-carousel no-pad-md">
+                <div class="flex-item">
+                    {{{region name="deals_of_the_day_product_1"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="deals_of_the_day_product_2"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="deals_of_the_day_product_3"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="deals_of_the_day_product_4"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="deals_of_the_day_product_5"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="deals_of_the_day_product_6"}}}
+                </div>
+            </div> 
+        </div>
+
+
+        <div class="row shop-our-top-category ">
+            <div class=" col-md-12 no-pad-md ">
+                {{{region name="shop_category_header"}}}    
+            </div>
+            <div class=" no-pad-md col-md-12 flex shop-our-category-carousel owl-carousel">
+                <div class="flex-item">
+                    {{{region name="shop_category_grid_1"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="shop_category_grid_2"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="shop_category_grid_3"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="shop_category_grid_4"}}}
+                </div>
+                <div class="flex-item">
+                    {{{region name="shop_category_grid_5"}}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="better-brands" style="display: none;">
+            <div class="row  tab-header">
+                <div class="col-md-12 better-brands-header">
+                    {{{region name="better-brands-header"}}}    
+                </div>
+            </div>
+            
+            <div class="row tab-content active" id="women">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            {{{region name="better-brands-column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="men" data-tab="men">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_2_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_2_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_2_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_2_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="junior" data-tab="junior">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_3_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_3_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_3_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_3_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="handbags-accessories" data-tab="handbags-accessories">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_4_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_4_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_4_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_4_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="jewelry-watches" data-tab="jewelry-watches">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_5_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_5_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_5_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_5_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="beauty" data-tab="beauty">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_6_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_6_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_6_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_6_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="shoes" data-tab="shoes">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_7_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_7_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_7_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_7_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="kids-baby" data-tab="kids-baby">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_8_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_8_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_8_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_8_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="home" data-tab="home">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_9_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_9_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_9_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_9_column_3"}}}    
+                </div>
+            </div>
+
+            <div class="row tab-content" id="furniture" data-tab="furniture">
+                <div class="col-12 col-md-12  col-xl-6 bg-banner">
+                    {{{region name="better-brands-cat_10_column_1"}}}      
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 sm-banner ">
+                    <div class="row">
+                        <div class="col-md-12 col-xl-12 top-bn">
+                            
+                            {{{region name="better-brands-cat_10_column_2_top"}}}            
+                        </div>
+                        <div class="col-md-12 col-xl-12 bottom-bn">
+                            {{{region name="better-brands-cat_10_column_2_bottom"}}}            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 md-banner">
+                    {{{region name="better-brands-cat_10_column_3"}}}    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="container-fluid px-0 new_arrival_banner">
+        <div class="row no-gutters  ">
+            <div class="col-md-12 ">
+                {{{region name="new_arrival_banner"}}}
+                <div class="container">
+                    <div class="inner-content"> 
+                        {{{region name="new_arrival_banner_content"}}}
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+    <div class="container ">
+        <div class="row   ">
+            <div class="col-md-12 no-pad-md brand_list">
+                {{{region name="brand_list"}}}
+            </div>
+        </div>
+        <div class="row get_inspired ">
+            <div class="col-md-12 col-lg-4  col-xl-5 py-4 py-lg-0 no-pad-md ">
+                <div class="top-content">
+                    {{{region name="get_inspired_top_text_content"}}}
+                </div>
+                {{{region name="get_inspired_left"}}}
+            </div>
+            <div class="col-md-12 col-lg-8 col-xl-7 no-pad-md">
+                {{{region name="get_inspired_right"}}}        
+            </div>    
+        </div>
+        <div class="row last_section d-md-px-0 ">
+            <div class="page col-12 no-pad-md">
+                {{{region name="page_builder_content"}}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

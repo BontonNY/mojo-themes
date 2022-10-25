@@ -1,0 +1,26 @@
+<div class="category-block-list-wrapper mt-3 mt-md-0">
+    <div class="category-block-list owl-carousel">
+        {{#each categories}}
+        {{#contains image.data "-featured"}}
+        <a class="category-block featured" href="{{url}}">
+            {{#if image}}
+            {{> components/common/responsive-img }}
+            {{/if}}
+            <span>{{name}}</span>
+        </a>
+        {{/contains}}
+        {{/each}}
+
+        {{#each categories}}
+        {{#contains image.data "-featured"}}
+        {{else}}
+        <a class="category-block" href="{{url}}">
+            {{#if image}}
+            {{> components/common/responsive-img }}
+            {{/if}}
+            <span>{{name}}</span>
+        </a>
+        {{/contains}}
+        {{/each}}
+    </div>
+</div>

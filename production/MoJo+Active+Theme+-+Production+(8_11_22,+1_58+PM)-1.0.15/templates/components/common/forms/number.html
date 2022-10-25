@@ -1,0 +1,6 @@
+<div class="form-group" id="{{id}}" data-validation="{{validation}}">
+    <label class="form-label" for="{{id}}_input">{{label}}
+        {{#if required}}<span class="required">{{lang 'common.required' }}</span>{{/if}}
+    </label>
+    <input type="number" class="form-control" data-label="{{label}}" data-rule="lowerThan" min="{{limitfrom}}" max="{{limitto}}" title="{{lang 'forms.range' limitFrom=limitfrom limitTo=limitto}}" value="{{value}}" id="{{id}}_input" name="{{name}}" aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
+</div>

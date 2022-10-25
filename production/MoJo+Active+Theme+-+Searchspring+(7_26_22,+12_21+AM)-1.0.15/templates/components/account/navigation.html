@@ -1,0 +1,107 @@
+<nav class="bg-light border border-gray rounded navBar--account mb-5">
+    <ul class="nav justify-content-center underline-links-on-hover">
+        {{#if account_page '===' 'settings'}}
+            <li class="nav-item my-2 is-active "><span class="nav-link">{{lang 'account.nav.settings'}}</span></li>
+        {{else}}
+            <li class="navBar-item my-2">
+                <a class="nav-link" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+            </li>
+        {{/if}}       
+
+        
+        {{#if account_page '===' 'orders'}}
+            {{#if page_type '===' 'account_order'}}
+                <li class="nav-item my-2">
+                    <a class="nav-link active" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                </li>
+            {{else}}
+                <li class="nav-item my-2"><span class="nav-link active">{{lang 'account.nav.orders'}}</span></li>
+            {{/if}}
+        {{else}}
+            <li class="nav-item my-2">
+                <a class="nav-link" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+            </li>
+        {{/if}}
+        {{#comment}}
+        <!--
+        {{#if settings.returns_enabled}}
+            {{#if account_page '===' 'returns'}}
+                <li class="nav-item my-2"><span class="nav-link">{{lang 'account.nav.returns'}}</span></li>
+            {{else}}
+                <li class="nav-item my-2">
+                    <a class="nav-link active" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                </li>
+            {{/if}}
+        {{/if}}
+        {{#if account_page '===' 'returns'}}
+            <li class="nav-item my-2 is-active"><span class="nav-link">{{lang 'account.nav.returns'}}</span></li>
+        {{else}}
+            <li class="nav-item my-2">
+                <a class="nav-link" href="/account/returns/">{{lang 'account.nav.returns'}}</a>
+            </li>
+        {{/if}}
+        {{#if account_page '===' 'messages'}}
+            <li class="nav-item my-2"><span class="nav-link">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</span></li>
+        {{else}}
+            <li class="navBar-item my-2">
+                <a class="nav-link active" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
+            </li>
+        {{/if}}
+        -->
+        {{/comment}}                
+        {{#if account_page '===' 'addresses'}}
+            <li class="nav-item my-2"><span class="nav-link">{{lang 'account.nav.addresses'}}</span></li>
+        {{else}}
+            <li class="navBar-item my-2">
+                <a class="nav-link active" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+            </li>
+        {{/if}}
+        {{#if settings.show_payment_methods}}
+            {{#if account_page '===' 'payment_methods'}}
+                <li class="nav-item my-2 is-active"><span class="nav-link">{{lang 'account.nav.payment_methods'}}</span></li>
+            {{else}}
+                <li class="navBar-item my-2">
+                    <a class="nav-link" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
+                </li>
+            {{/if}}
+        {{/if}}
+        {{#if settings.show_wishlist}}
+            {{#if account_page '===' 'wishlists'}}
+                <li class="nav-item my-2 is-active">
+                    <a href="{{urls.account.wishlists.all}}">
+                        <span class="nav-link">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</span>
+                    </a>
+                </li>
+            {{else}}            
+                {{#if account_page '===' 'returns'}}
+                    {{assignVar "count" 0}}
+                    {{#each customer.wishlists}}
+                        <span style="display: none !important;">{{incrementVar "count"}}</span>
+                    {{/each}}
+                    <li class="navBar-item my-2">
+                        <a class="nav-link" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists' num_wishlists=(getVar "count")}}</a>
+                    </li>                
+                {{else}}
+                    <li class="navBar-item my-2">
+                        <a class="nav-link" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</a>
+                    </li>
+                {{/if}}
+            {{/if}}
+        {{/if}}
+        {{#if account_page '===' 'recent_items'}}
+            <li class="nav-item my-2 is-active"><span class="nav-link">{{lang 'account.nav.recently_viewed'}}</span></li>
+        {{else}}
+            <li class="navBar-item my-2">
+                <a class="nav-link" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+            </li>
+        {{/if}}
+
+
+
+        {{#if customer}}
+            <li class="navBar-item my-2">
+                <a class="nav-link" href="{{urls.auth.logout}}" aria-label="{{lang 'common.logout'}}">{{lang 'common.logout'}}</a>
+            </li>
+        {{/if}}              
+    </ul>
+</nav>

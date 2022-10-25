@@ -1,0 +1,107 @@
+{{#if settings.data_tag_enabled}}
+    <article class="list-item m-0 row align-items-center" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}">
+{{else}}
+    <article class="list-item m-0 row align-items-center">
+{{/if}}
+    <figure class="list-item-figure px-1 m-0 col-2 text-center">
+        <!-- class option: listItem-image -->
+        {{> components/common/responsive-img
+            image=image
+            class="img-fluid"
+            fallback_size=theme_settings.productgallery_size
+            lazyload=theme_settings.lazyload_mode
+            default_image=theme_settings.default_image_product
+        }}
+        <!-- TODO: Build out a nice & AX display of quickadd or remove quickadd  -->
+        {{#comment}}
+        {{#unless hide_product_quick_view}}
+            {{#if theme_settings.show_product_quick_view}}
+                <div class="listItem-figureBody">
+                    <a {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="btn btn-outline-primary btn-sm listItem-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                </div>
+            {{/if}}
+        {{/unless}}
+        {{/comment}}
+    </figure>
+    <div class="py-3 pr-3 d-flex flex-column col">
+        <div class="flex-fill mb-2">
+            <h4 class="listItem-title">
+                <a class="text-primary font-weight-light" href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+            </h4>
+            {{#if sku}}
+                <p class="h4 text-dark font-weight-light my-1">{{{sku}}}</p>
+            {{/if}}
+            {{#if show_rating}}
+                <p class="listItem-rating">{{> components/products/ratings rating=rating}}</p>
+            {{/if}}
+                <!-- TODO: Better placement of brandname and summary -->
+                {{#unless (occurrences (toLowerCase theme_settings.pdp-brand-list) (toLowerCase brand.name))}}
+                    {{#if brand.name}}
+                    <p class="listItem-brand">{{brand.name}}</p>
+                    {{/if}}
+                {{/unless}}
+                
+                {{#if summary}}
+                    <p>{{{summary}}}</p>
+                {{/if}}
+        </div>
+        <!-- TODO: Find nicer handle & display for listItem-Actions -->
+        <!-- <div class="listItem-actions">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#if price}}
+                    <div class="listItem-price">{{> components/products/price price=price}}</div>
+                {{/if}}
+                {{#if show_cart_action}}
+                    {{#if has_options}}
+                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="btn btn-outline-primary btn-sm" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                    {{/if}}
+                    {{#if pre_order}}
+                        <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="btn btn-primary">{{lang 'products.pre_order'}}</a>
+                    {{/if}}
+                    {{#if add_to_cart_url }}
+                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="btn btn-primary">{{lang 'products.add_to_cart'}}</a>
+                    {{/if}}
+                    {{#if out_of_stock_message }}
+                        <a href="{{url}}" data-event-type="product-click" class="btn btn-outline-primary btn-sm" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+            {{#if show_compare}}
+                <label class="btn btn-outline-primary btn-sm" for="compare-{{id}}">
+                    {{lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
+                </label>
+            {{/if}}
+        </div> -->
+        <div class="d-flex justify-content-between">
+            <div class="listItem-badges d-flex align-items-center" data-json="{{json .}}">
+                {{#filter custom_fields "Green Products" property="name"}}
+                <div class="mr-2">
+                    <img style="max-width: 60px;" src="{{cdn 'img/recycle.png'}}" title="Green Products">
+                </div>
+                {{/filter}}
+                {{#filter custom_fields "AbilityOne" property="name"}}
+                <div class="mr-2">
+                    <img style="max-width: 60px;" src="{{cdn 'img/AbilityOne-color.png'}}" title="AbilityOne">
+                </div>
+                {{/filter}}
+            </div>
+            <div>
+                <div class="d-flex mb-1 justify-content-around">
+                    {{#if price.sale_price_without_tax}}
+                    <div class="mr-3 font-italic text-muted">List Price: {{price.sale_price_without_tax.formatted}}</div>
+                    <div class="font-weight-bold">Our Price: {{price.without_tax.formatted}}</div>
+                    {{/if}}
+                </div>
+                <div class="d-flex align-items-center" data-form-action="/cart.php">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{id}}">
+                    <label for="qty" class="mb-0 text-muted">Quantity</label>
+                    <input disabled name="qty" type="number" min="1" value="1" style="max-width: 60px;" class="form-control text-center mx-3 border-dark disabled">
+                    <button class="btn disabled btn-primary btn-alt">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

@@ -1,0 +1,16 @@
+<div class="grid-layout">
+    <div class="productGrid">
+        {{#each wishlist.items}}
+        <div class="product">
+            {{> components/products/card-ax id=product_id theme_settings=../theme_settings}}
+
+            {{#if ../show_remove}}
+            <form action="{{remove_url}}" class="form text-center" method="post">
+                <input type="submit" class="btn btn-outline-primary btn-sm" value="{{lang 'account.wishlists.remove_item'}}" />
+            </form>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+
+</div>
